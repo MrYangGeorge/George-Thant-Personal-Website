@@ -9,10 +9,10 @@ This site is designed to showcase who I am — a Computer Engineering student wi
 I'm currently pursuing a degree in **Computer Engineering**, where I dive into everything from embedded systems to software development. Along the way, I've developed strong programming skills and hands-on experience with both hardware and software.
 
 This website gives a glimpse into:
-- My **projects**
-- My **technical skills**
-- My **resume**
-- A bit of **who I am** beyond just the code
+- My **Education**
+- My **Projects**
+- My **Work**
+- My **Interest**
 
 ## 🧠 Skills
 
