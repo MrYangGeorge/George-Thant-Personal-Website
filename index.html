@@ -1,93 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>George Thant | Personal Website</title>
-  <link rel="stylesheet" href="Testing.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aung Zin Thant (George) - Computer Engineering Student at UC Irvine. Specializing in embedded systems, circuit design, and hardware-software integration.">
+    <meta name="keywords" content="Aung Zin Thant, George, Computer Engineering, UC Irvine, Arduino, Embedded Systems, Circuit Design">
+    <meta name="author" content="Aung Zin Thant (George)">
+
+    <title>Aung Zin Thant (George) | Computer Engineering Student</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <h1>George Thant</h1>
-      <nav>
-        <ul>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#interests">Interests</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- Header & Navigation -->
+    <header class="main-header" id="header">
+        <div class="header-wrapper">
+            <div class="header-top">
+                <div class="header-title-section">
+                    <h1>George</h1>
+                    <p class="subtitle">Computer Engineering Student</p>
+                </div>
+            </div>
+            <nav class="nav-container">
+                <div class="nav-items" id="navItems">
+                    <div class="nav-indicator" id="navIndicator"></div>
+                    <a href="#hero" class="nav-item active" data-section="hero">Home</a>
+                    <a href="#about" class="nav-item" data-section="about">About</a>
+                    <a href="#education" class="nav-item" data-section="education">Education</a>
+                    <a href="#experience" class="nav-item" data-section="experience">Experience</a>
+                    <a href="#projects" class="nav-item" data-section="projects">Projects</a>
+                    <a href="#skills" class="nav-item" data-section="skills">Skills</a>
+                    <a href="#contact" class="nav-item" data-section="contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-  <main>
-    <section id="education" class="section">
-      <h2>Education</h2>
-      <ul>
-        <li><strong>UC Irvine</strong> – B.S. in Computer Engineering (Fall 2025 - Present)</li>
-        <li><strong>Orange Coast College</strong> – A.S. in Computer Science (2023 - 2025)</li>
-        <li><strong>High School in Myanmar</strong> – 5 Distinctions & Cultural Exchange Award</li>
-      </ul>
-    </section>
+    <!-- Main Content -->
+    <main class="main-content">
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Smart Sensor Device</strong> – Arduino + Python data logger</li>
-        <li><strong>Ladder App</strong> – Firebase + React Native social app</li>
-        <li><strong>Mental Health App</strong> – Python Flask & UI prototype</li>
-      </ul>
-    </section>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <h1 class="hero-name">Aung Zin Thant (George)</h1>
+            <p class="hero-tagline">Computer Engineering Student at UC Irvine</p>
+            <p class="hero-description">
+                Building innovative hardware and software solutions through embedded systems, circuit design, and programming.
+                Passionate about bridging the gap between hardware and software to create intelligent systems.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View My Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </section>
 
-    <section id="work" class="section">
-      <h2>Work Experience</h2>
-      <ul>
-        <li><strong>IT Intern</strong> – Superior Court (2024)</li>
-        <li><strong>Math Tutor</strong> – OCC Math Center</li>
-        <li><strong>Server</strong> – Part-time while in school</li>
-      </ul>
-    </section>
+        <!-- About Section -->
+        <section id="about" class="content-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Background & Interests</p>
+            </div>
+            <div class="about-content">
+                <p class="mb-md">
+                    I'm a Computer Engineering student at UC Irvine with a passion for embedded systems,
+                    circuit design, and hardware-software integration. My academic journey combines
+                    hands-on electronics laboratory work with strong programming fundamentals in C++,
+                    Python, and Java.
+                </p>
+                <p class="mb-md">
+                    Currently working in the UC Irvine Electronics Laboratory, I build and test analog
+                    and digital circuits using op-amp ICs for signal processing. My experience spans
+                    from Arduino-based autonomous systems to image processing algorithms, bridging
+                    theoretical knowledge with practical implementation.
+                </p>
+                <p>
+                    Beyond engineering, I've tutored over 20 students weekly in advanced mathematics
+                    including Calculus III and Linear Algebra, sharing my passion for problem-solving
+                    and analytical thinking. I'm always eager to take on new technical challenges and
+                    collaborate on innovative hardware and software projects.
+                </p>
+            </div>
+        </section>
 
-    <section id="interests" class="section">
-      <h2>Interests</h2>
-      <ul>
-        <li>Film history & editing techniques</li>
-        <li>Green tech & recycling engineering</li>
-        <li>Embedded systems & AI</li>
-        <li>Basketball & hiking</li>
-      </ul>
-    </section>
-  </main>
+        <!-- Education Section -->
+        <section id="education" class="content-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">Academic Background</p>
+            </div>
+            <div class="timeline">
 
-  
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-left">
-        <h3>Contact</h3>
-        <p><strong>Email:</strong> <a href="mailto:yanggeorge6688@gmail.com">yanggeorge6688@gmail.com</a></p>
-        <p><strong>Phone:</strong> <a href="tel:+14243010258">(424) 301-0258</a></p>
-      </div>
-  
-      <div class="footer-center">
-        <h3>Follow Me</h3>
-        <p>
-          <a href="www.linkedin.com/in/aungthant-bb4893249" target="_blank">LinkedIn</a> |
-          <a href="https://www.instagram.com/_yrj__/" target="_blank">Instagram</a>
-        </p>
-      </div>
-  
-      <div class="footer-right">
-        <h3>Resume</h3>
-        <p>
-          <a href="GeorgeThant_Resume.pdf" target="_blank" class="resume-button">View Resume</a><br>
-          <a href="GeorgeThant_Resume.pdf" download class="resume-button">Download Resume</a>
-        </p>
-      </div>
-    </div>
-    <p class="footer-credit">© 2025 George Thant. All rights reserved.</p>
-  </footer>
-  
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-date">Expected May 2027</div>
+                    <h3 class="timeline-company">University of California, Irvine</h3>
+                    <h4 class="timeline-role">Bachelor of Science in Computer Engineering</h4>
+                    <div class="timeline-description">
+                        <p>Pursuing comprehensive education in hardware and software systems, digital logic, embedded systems, and computer architecture.</p>
+                        <ul>
+                            <li>Hands-on electronics laboratory experience with analog and digital circuits</li>
+                            <li>Signal processing using op-amp ICs and oscilloscope measurements</li>
+                            <li>Circuit analysis and frequency response testing</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">Circuit Design</span>
+                        <span class="tag">Electronics Lab</span>
+                        <span class="tag">Signal Processing</span>
+                        <span class="tag">Computer Architecture</span>
+                    </div>
+                </div>
 
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-date">May 2025</div>
+                    <h3 class="timeline-company">Orange Coast College</h3>
+                    <h4 class="timeline-role">Associate in Science, Computer Science</h4>
+                    <div class="timeline-description">
+                        <p>Built strong foundation in computer science fundamentals, data structures, and programming.</p>
+                        <ul>
+                            <li>Certificate: C++ Specialization</li>
+                            <li>Certificate: Tutoring Skills & Strategies Training</li>
+                            <li>Strong focus on algorithms and data structures</li>
+                            <li>Advanced mathematics coursework</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Data Structures</span>
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Mathematics</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="content-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">Work & Research</p>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-date">Sep 2025 - Present</div>
+                    <h3 class="timeline-company">University of California, Irvine</h3>
+                    <h4 class="timeline-role">Electronics Laboratory - Lab Coursework Experience</h4>
+                    <div class="timeline-description">
+                        <p>Hands-on laboratory experience building and testing analog and digital circuits for signal processing applications.</p>
+                        <ul>
+                            <li>Built analog and digital circuits on breadboard using op-amp ICs (741) for signal processing</li>
+                            <li>Tested circuits with oscilloscope and function generator, measuring gain, phase shift, and frequency response</li>
+                            <li>Verified theoretical predictions through experimental data and circuit analysis</li>
+                            <li>Documented circuit performance and analyzed discrepancies between theory and practice</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">Op-Amp IC 741</span>
+                        <span class="tag">Oscilloscope</span>
+                        <span class="tag">Function Generator</span>
+                        <span class="tag">Circuit Analysis</span>
+                        <span class="tag">Breadboard</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-date">Aug 2024 - Jun 2025</div>
+                    <h3 class="timeline-company">Orange Coast College</h3>
+                    <h4 class="timeline-role">Math Center - Math Tutor</h4>
+                    <div class="timeline-description">
+                        <p>Provided individualized mathematics tutoring to college students in advanced mathematics courses.</p>
+                        <ul>
+                            <li>Tutored 20+ students weekly in Calculus III and Linear Algebra, 12 hours per week</li>
+                            <li>Explained complex mathematical concepts through clear examples and problem-solving strategies</li>
+                            <li>Adapted teaching methods to accommodate different learning styles and skill levels</li>
+                            <li>Helped students develop analytical thinking and problem-solving skills</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">Calculus III</span>
+                        <span class="tag">Linear Algebra</span>
+                        <span class="tag">Teaching</span>
+                        <span class="tag">Mathematics</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div class="timeline-date">Apr 2023 - May 2024</div>
+                    <h3 class="timeline-company">Meet Fresh Restaurant</h3>
+                    <h4 class="timeline-role">Shift Lead & Associate</h4>
+                    <div class="timeline-description">
+                        <p>Led team operations and managed daily restaurant activities while ensuring quality service.</p>
+                        <ul>
+                            <li>Managed team of 5+ employees: operations, scheduling, and training</li>
+                            <li>Coordinated shift activities and delegated tasks to optimize workflow</li>
+                            <li>Trained new employees on procedures, customer service, and safety protocols</li>
+                            <li>Maintained quality standards and resolved customer concerns</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-tags">
+                        <span class="tag">Team Leadership</span>
+                        <span class="tag">Operations Management</span>
+                        <span class="tag">Training</span>
+                        <span class="tag">Customer Service</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Recent Work</p>
+            </div>
+            <div class="project-grid">
+
+                <div class="project-card">
+                    <div class="project-image">
+                        Bluetooth RC Car Project
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Bluetooth RC Car - Autonomous Navigation System</h3>
+                        <p class="project-description">
+                            Programmed autonomous obstacle-detection robot for UC Irvine's OAI Summer Bridge Challenge.
+                            Wrote Arduino C++ code to interface ultrasonic sensor with motor shield for collision avoidance.
+                            Added Bluetooth connectivity for remote control, enabling switch between autonomous and manual modes.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">Arduino</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">HCSR04 Sensor</span>
+                            <span class="tag">AFMotor Shield</span>
+                            <span class="tag">Bluetooth</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Details</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        Cookie Calculator Project
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cookie Calories Calculator</h3>
+                        <p class="project-description">
+                            Built C++ program that calculates nutritional information based on cookie type and serving size.
+                            Implemented custom LinkedList to store and retrieve cookie data efficiently.
+                            Designed command-line interface with input validation and error handling for robust user experience.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">LinkedList</span>
+                            <span class="tag">Data Structures</span>
+                            <span class="tag">CLI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Details</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        Image Processing Project
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">GreenScreen & Composite Image Modifier</h3>
+                        <p class="project-description">
+                            Built image processing tool that extracts objects by detecting color thresholds and creates composite images.
+                            Used C++ pointers to process pixel arrays, implementing green screen transparency and alpha compositing.
+                            Optimized pixel-iteration algorithms for real-time object extraction and image manipulation.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">Pointers</span>
+                            <span class="tag">Image Processing</span>
+                            <span class="tag">Algorithms</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Details</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="content-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Technical Expertise</p>
+            </div>
+            <div class="skills-container">
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>C++</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Python</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Java</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>SQL</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Hardware & Embedded Systems</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Arduino</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Circuit Design</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Breadboard Prototyping</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Sensor Integration</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Oscilloscope & Test Equipment</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Linux/Unix</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Git</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Data Structures</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Object-Oriented Programming</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Algorithms</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Mathematics</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Calculus III</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Linear Algebra</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Differential Equations</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-name">
+                                <span>Discrete Mathematics</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's Connect</p>
+            </div>
+            <div class="contact-grid">
+
+                <a href="mailto:yanggeorge6688@gmail.com" class="contact-card">
+                    <div class="contact-icon">✉</div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">yanggeorge6688@gmail.com</div>
+                </a>
+
+                <a href="tel:+14243010258" class="contact-card">
+                    <div class="contact-icon">☎</div>
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">(424) 301-0258</div>
+                </a>
+
+                <div class="contact-card">
+                    <div class="contact-icon">⌘</div>
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Irvine, CA 92617</div>
+                </div>
+
+                <a href="https://github.com/aungzinthant" class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <div class="contact-icon">◈</div>
+                    <div class="contact-label">GitHub</div>
+                    <div class="contact-value">github.com/aungzinthant</div>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#hero" class="footer-link">Home</a>
+                <a href="#about" class="footer-link">About</a>
+                <a href="#education" class="footer-link">Education</a>
+                <a href="#experience" class="footer-link">Experience</a>
+                <a href="#projects" class="footer-link">Projects</a>
+                <a href="#skills" class="footer-link">Skills</a>
+                <a href="#contact" class="footer-link">Contact</a>
+            </div>
+            <p class="footer-copyright">
+                2025 Aung Zin Thant (George). All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
