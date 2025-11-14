@@ -1,39 +1,31 @@
-# 👨‍💻 George Thant — Personal Website
+# Personal Portfolio Website
 
-Welcome to the repository for my personal website!
+This is my personal portfolio website, showcasing my projects, skills, and experience in computer engineering and software development.
 
-This site is designed to showcase who I am — a Computer Engineering student with a strong passion for **programming**, **technology**, and building things that make life better. It's not just a portfolio — it's a small digital corner that reflects both my technical journey and personal interests.
+🔗 **Live Site:** https://georgethant.com
 
-## 🚀 About Me
+## 🛠️ Tech Stack
+- HTML5  
+- CSS3  
+- JavaScript  
+- GitHub (source control)  
+- Cloudflare Pages (deployment + hosting)  
+- Namecheap (domain purchase)
 
-I'm currently pursuing a degree in **Computer Engineering**, where I dive into everything from embedded systems to software development. Along the way, I've developed strong programming skills and hands-on experience with both hardware and software.
+## 📁 Project Structure
+- `index.html` — main webpage  
+- `style.css` — global styling  
+- `script.js` — interactions and UI behavior  
+- `/images` — images used across the site  
 
-This website gives a glimpse into:
-- My **Education**
-- My **Projects**
-- My **Work**
-- My **Interest**
+## 🚀 Deployment
+This website is automatically deployed using **Cloudflare Pages** whenever changes are pushed to the connected GitHub repository.
 
-## 🧠 Skills
+## Purpose
+Understanding the workflow of a static website on my own and showcasing my ability and skills, and projects more conveniently. Later on, more projects and apps will be coming soon... To be continued (Current time:) **Nov13 2025** 
 
-Some of the areas you'll see represented here:
-- Programming in **C/C++**, **Python**, **JavaScript**, and more
-- Working with **microcontrollers** and **embedded systems**
-- Building full-stack applications
-- Technical writing & documentation
-- Problem solving and algorithmic thinking
-
-## 
-
-- Fully responsive, mobile-friendly layout
-- Projects section with code links and summaries
-- About Me section with academic and personal background
-- Contact form or links (email, LinkedIn, GitHub)
-
-## 🌐 Website Features & 🔧 Built With
-
-- HTML, CSS, JavaScript 
-- Hosted & Managed via Namecheap 
-
-# Testing
-
+## 📬 Contact
+If you'd like to connect or collaborate:
+- Email: yanggeorge6688@gmail.com
+- LinkedIn: www.linkedin.com/in/georgethant-bb4893249
+- GitHub: https://github.com/MrYangGeorge
