@@ -775,8 +775,21 @@ body {
     }
 
     .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.contact-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--accent-primary);
 }
 
 /* Scrollbar Styling */
