@@ -556,7 +556,7 @@ body {
    ============================================ */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
 }
@@ -676,14 +676,6 @@ body {
    RESPONSIVE DESIGN
    ============================================ */
 
-/* Tablet - Large */
-@media (max-width: 1024px) {
-     .contact-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space-sm);
-    }
-}
-
 /* Tablet */
 @media (max-width: 768px) {
     .header-top {
@@ -723,10 +715,6 @@ body {
 
     .skills-container {
         grid-template-columns: 1fr;
-    }
-  .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space-sm);
     }
 }
 
@@ -784,11 +772,6 @@ body {
 
     .timeline-item {
         padding-left: var(--space-md);
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-sm);
     }
 }
 
