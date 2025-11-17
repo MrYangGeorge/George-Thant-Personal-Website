@@ -676,6 +676,13 @@ body {
    RESPONSIVE DESIGN
    ============================================ */
 
+/* Tablet - Large */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 /* Tablet */
 @media (max-width: 768px) {
     .header-top {
@@ -715,6 +722,9 @@ body {
 
     .skills-container {
         grid-template-columns: 1fr;
+    }
+   .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -775,7 +785,7 @@ body {
     }
 
     .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
