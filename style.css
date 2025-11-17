@@ -792,13 +792,6 @@ body {
     }
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
-}
-
 .contact-icon svg {
     width: 40px;
     height: 40px;
