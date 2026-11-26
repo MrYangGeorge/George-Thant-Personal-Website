@@ -31,10 +31,36 @@ const projects = [
     short: "Built a quadcopter from parts and flew a fully autonomous waypoint mission: automatic takeoff, waypoint and auto-land, planned in Mission Planner.",
     bullets: ["Built a quadcopter from parts with my team: flight controller, ExpressLRS radio link, brushless motors and ESCs, GPS and Wi-Fi telemetry, running ArduPilot.",
       "Flew a fully autonomous waypoint mission planned in Mission Planner: automatic takeoff, a waypoint, then auto-land.",
-      "Connected the flight controller to the ground station over Wi-Fi through an ESP32-C3, and verified attitude telemetry by tilting the board and watching the on-screen horizon.",
-      "Next, in Drones 2 (Winter 2027): onboard YOLO object detection on an Orange Pi companion computer, vision-triggered landing, and an AI pilot that flies through tool calls."],
+      "Connected the flight controller to the ground station over Wi-Fi through an ESP32-C3, and verified attitude telemetry by tilting the board and watching the on-screen horizon."],
     credits: [["Course: EECS 195 Drones, taught by Prof. Peter Burke, UC Irvine. Parts and build design provided by the course.", ""], ["Follow-on: Drones 2: AI, Vision & Autonomy (EECS 199 independent study) with Prof. Peter Burke, Winter 2027", ""], ["Flight software: ArduPilot (open source)", "https://ardupilot.org/"]],
-    skills: ["Drone assembly and wiring", "ArduPilot and Mission Planner setup", "Autonomous waypoint missions", "ESP32 Wi-Fi telemetry bridge", "Checking live sensor data against real motion"] },
+    skills: ["Drone assembly and wiring", "ArduPilot and Mission Planner setup", "Autonomous waypoint missions", "ESP32 Wi-Fi telemetry bridge", "Checking live sensor data against real motion"],
+    status: "In progress", nowTitle: "What I'm working on now", now: "Drones 2 (Winter 2027) with Prof. Burke: adding a USB camera and an Orange Pi companion computer that streams video into Mission Planner, running YOLO object detection on board so the drone lands itself when it sees a target, then moving to an AI pilot that flies short missions through tool calls. All AI-controlled flights stay inside the 20 ft cage with a human holding the disarm switch." },
+  { id: "switch", hasVideo: true, repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: IMG + "light-switch-mounted-thumb.jpg", pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
+    stack: "ESP32 · PWM · servo · USB-C 5 V",
+    short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
+    bullets: ["Built a web page served by the ESP32 that turns a wall light switch on and off over Wi-Fi.",
+      "Calibrated the servo's on, off and rest positions for the switch's travel. The arm returns to rest after each press so the switch still works by hand.",
+      "Powered the servo and ESP32 from a USB-C 5 V breakout instead of the board's 3.3 V pin, with capacitors on the 5 V rail.",
+      "Kept the firmware non-blocking so the web server stays responsive while the servo moves."],
+    skills: ["PWM servo calibration", "Web server on an ESP32", "Non-blocking firmware with millis()", "Separate 5 V supply for actuators"],
+    nowTitle: "Next step", now: "Control the switch from anywhere, not just on my home Wi-Fi, without exposing the ESP32 to the internet: either a VPN such as Tailscale or WireGuard, or an SSH tunnel through a small always-on computer at home. Remote access also means adding a login to the control page." },
+  { id: "armadillo", gallery: ARM, img: ARM[0].thumb, fit: "contain", cat: "embedded", title: "ArmAdillo Color-Sorting Robot Arm", badges: [["Team","Zims Robotics Club"],["Team","Electrical lead"]], date: "Fall 2026 – Present",
+    stack: "ESP32 · PCA9685 · AS5600 · TCA9548A · I²C · PWM",
+    short: "Electrical team lead for a six-degree-of-freedom competition arm. Planned the wiring for seven servos and three joint encoders on one I²C bus.",
+    bullets: ["Serve as electrical team lead and oversee sensor integration for a six-degree-of-freedom color-sorting competition arm.",
+      "Planned the initial wiring: an ESP32 drives seven servos (six joints and the gripper) through a PCA9685 PWM board over I²C.",
+      "Added a TCA9548A I²C multiplexer so three AS5600 magnetic encoders, which all share one fixed address, can report joint angles on the same bus.",
+      "Split the power: a fused 6 V, 20 A supply for the servos and a separate 5 V, 2 A supply for the ESP32. Mechanical CAD is still in progress."],
+    skills: ["Leading an electrical team", "I²C bus design with a multiplexer", "Servo power budgeting and fusing", "Choosing sensors for joint feedback"],
+    status: "In progress", nowTitle: "What I'm working on now", now: "Finishing the mechanical CAD with the team, integrating the electronics into the arm, and finalizing the power system: a common bus bar and power rail so the fused 6 V servo supply and the ESP32 supply share a clean ground." },
+  { id: "rccar", img: RCCAR.thumb, gallery: RCCAR_MEDIA, layout: "trio-media", hasVideo: true, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
+    stack: "Arduino Uno · C++ · Adafruit Motor Shield · HC-SR04 · Bluetooth",
+    short: "A four-wheel mecanum car driven from a phone over Bluetooth that stops by itself when something is within 30 cm. Built for UCI's Summer Bridge Tech Challenge.",
+    bullets: ["Wrote the Arduino C++ firmware: Bluetooth serial commands for forward, back, turns, spins and speed up/down across four DC motors.",
+      "Added an HC-SR04 ultrasonic safety stop that halts the motors and lights an LED when an obstacle is closer than 30 cm.",
+      "Built the car with the team on a mecanum-wheel chassis, with 3D-printed and laser-cut parts as the challenge required. The team earned an award at the final race."],
+    credits: [["Challenge and kit: UCI OAI Summer Bridge Tech Challenge, led by Prof. David Copp (MAE)", ""], ["Chassis: SZDOIT 60 mm mecanum wheel car kit", ""]],
+    skills: ["DC motor control with a motor shield", "Bluetooth serial commands", "Ultrasonic distance sensing", "Team design with 3D-printed and laser-cut parts"] },
   { id: "irrigation", cat: "embedded", title: "Smart Irrigation System", badges: [["Hackathon","StarkHacks · Purdue"],["Team","Team"]], date: "Apr 2026",
     stack: "ESP32 · Python · FastAPI · WebSockets", repo: "https://github.com/MrYangGeorge/Groot", devpost: "https://devpost.com/software/leaf-it-to-us-yvn8ls", gallery: IRR, img: IRR[0].thumb, fit: "contain",
     short: "ESP32 reads soil-moisture, temperature/humidity, water-level and light sensors and decides when to run a water pump.",
@@ -43,22 +69,6 @@ const projects = [
       "Designed a FastAPI backend that applies sensor thresholds to decide when to water, with low-water safety checks and an automatic/manual mode.",
       "Defined REST endpoints shared by two frontends, including an AI chat interface that explains plant status."],
     skills: ["Multi-sensor integration on an ESP32", "Streaming JSON over Wi-Fi and WebSockets", "Threshold control with safety checks", "Driving a pump through an L298N", "KiCad schematic capture"] },
-  { id: "armadillo", gallery: ARM, img: ARM[0].thumb, fit: "contain", cat: "embedded", title: "ArmAdillo Color-Sorting Robot Arm", badges: [["Team","Zims Robotics Club"],["Team","Electrical lead"]], date: "Fall 2026 – Present",
-    stack: "ESP32 · PCA9685 · AS5600 · TCA9548A · I²C · PWM",
-    short: "Electrical team lead for a six-degree-of-freedom competition arm. Planned the wiring for seven servos and three joint encoders on one I²C bus.",
-    bullets: ["Serve as electrical team lead and oversee sensor integration for a six-degree-of-freedom color-sorting competition arm.",
-      "Planned the initial wiring: an ESP32 drives seven servos (six joints and the gripper) through a PCA9685 PWM board over I²C.",
-      "Added a TCA9548A I²C multiplexer so three AS5600 magnetic encoders, which all share one fixed address, can report joint angles on the same bus.",
-      "Split the power: a fused 6 V, 20 A supply for the servos and a separate 5 V, 2 A supply for the ESP32. Mechanical CAD is still in progress."],
-    skills: ["Leading an electrical team", "I²C bus design with a multiplexer", "Servo power budgeting and fusing", "Choosing sensors for joint feedback"] },
-  { id: "switch", hasVideo: true, repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: IMG + "light-switch-mounted-thumb.jpg", pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
-    stack: "ESP32 · PWM · servo · USB-C 5 V",
-    short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
-    bullets: ["Built a web page served by the ESP32 that turns a wall light switch on and off over Wi-Fi.",
-      "Calibrated the servo's on, off and rest positions for the switch's travel. The arm returns to rest after each press so the switch still works by hand.",
-      "Powered the servo and ESP32 from a USB-C 5 V breakout instead of the board's 3.3 V pin, with capacitors on the 5 V rail.",
-      "Kept the firmware non-blocking so the web server stays responsive while the servo moves."],
-    skills: ["PWM servo calibration", "Web server on an ESP32", "Non-blocking firmware with millis()", "Separate 5 V supply for actuators"] },
   { id: "focus", cat: "embedded", title: "IoT Focus-Monitoring System", badges: [["Hackathon","IrvineHacks"],["Team","Team"]], date: "Feb 2026",
     stack: "Arduino UNO Q · C++ · Python · I²C · Supabase · React", repo: "https://github.com/MrYangGeorge/LOOKIE_DOOKIE", devpost: "https://devpost.com/software/lookie-dookie",
     short: "A study-focus tool on an Arduino UNO Q: a USB camera runs face detection while sensors read room light and temperature, and a React dashboard tracks each session.",
@@ -76,14 +86,6 @@ const projects = [
       "Worked with teammates to diagnose wiring and mechanical faults during assembly."],
     credits: [["Original design and code: Regis Hsu, SpiderRobot", "https://github.com/regishsu/SpiderRobot"], ["Build guide: ROBOT Lk", ""]],
     skills: ["3D printing and mechanical assembly", "Wiring and calibrating 12 servos", "Reading and adapting someone else's firmware", "Finding a pin conflict between a sensor and serial output"] },
-  { id: "rccar", img: RCCAR.thumb, gallery: RCCAR_MEDIA, layout: "trio-media", hasVideo: true, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
-    stack: "Arduino Uno · C++ · Adafruit Motor Shield · HC-SR04 · Bluetooth",
-    short: "A four-wheel mecanum car driven from a phone over Bluetooth that stops by itself when something is within 30 cm. Built for UCI's Summer Bridge Tech Challenge.",
-    bullets: ["Wrote the Arduino C++ firmware: Bluetooth serial commands for forward, back, turns, spins and speed up/down across four DC motors.",
-      "Added an HC-SR04 ultrasonic safety stop that halts the motors and lights an LED when an obstacle is closer than 30 cm.",
-      "Built the car with the team on a mecanum-wheel chassis, with 3D-printed and laser-cut parts as the challenge required. The team earned an award at the final race."],
-    credits: [["Challenge and kit: UCI OAI Summer Bridge Tech Challenge, led by Prof. David Copp (MAE)", ""], ["Chassis: SZDOIT 60 mm mecanum wheel car kit", ""]],
-    skills: ["DC motor control with a motor shield", "Bluetooth serial commands", "Ultrasonic distance sensing", "Team design with 3D-printed and laser-cut parts"] },
   { id: "mips", gallery: MIPS, img: MIPS[0].thumb, fit: "contain", cat: "digital", title: "Pipelined MIPS Processor", badges: [["Course","Course · Computer Architecture"]], date: "Fall 2026",
     stack: "Verilog · Vivado XSim",
     short: "Instruction-fetch and ALU control logic for a pipelined CPU, passing forwarding, stall, branch and jump tests.",
@@ -119,7 +121,7 @@ const projects = [
       "Wrote a compositor that fills the transparent pixels from a background image of the same size.",
       "Passed all six of the instructor's automated tests on the provided images."],
     credits: [["Assignment, test harness and images: CS 150 at Orange Coast College, Stephen Gilbert", ""]],
-    skills: ["Pointer arithmetic over raw image buffers", "RGBA pixel formats", "Writing code against an automated test suite"] },
+    skills: ["Pointer arithmetic over raw image buffers", "RGBA pixel formats", "Writing code against an automated test suite"] }
 ];
 const GROUPS = [
   { key: "builds", show: 4, match: p => p.cat === "embedded" },
@@ -128,7 +130,7 @@ const GROUPS = [
 const expanded = { builds: false, course: false };
 
 function esc(s) { return s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c])); }
-function badgeHTML(p) { return p.badges.map(([k,label]) => `<span class="badge ${BADGE[k]}">${esc(label)}</span>`).join(""); }
+function badgeHTML(p) { return (p.status ? `<span class="badge b-status">${esc(p.status)}</span>` : "") + p.badges.map(([k,label]) => `<span class="badge ${BADGE[k]}">${esc(label)}</span>`).join(""); }
 
 function thumb(p, label) {
   if (p.img) return `<div class="footprint has-img${p.fit ? " fit" : ""}${p.dark ? " dark" : ""}">${p.hasVideo && label === "PHOTO" ? `<span class="vid-tag">▶ VIDEO</span>` : ""}<img src="${p.img}" alt="${esc(p.title)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ""}></div>`;
@@ -175,6 +177,7 @@ function renderDetail(p) {
     ${p.gallery ? galleryHTML(p) : `<div class="gallery single${p.art ? " art-strip" : ""}">${thumb(p.full ? { ...p, img: p.full, pos: null } : p, "")}</div>`}
     <h2>What I built</h2>
     <ul>${p.bullets.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
+    ${p.now ? `<h2>${esc(p.nowTitle || "Next step")}</h2><p class="now-note">${esc(p.now)}</p>` : ""}
     ${p.skills ? `<h2>Skills I developed</h2><div class="chips skill-chips">${p.skills.map(k => `<span>${esc(k)}</span>`).join("")}</div>` : ""}
     ${p.credits ? `<h2>Credits</h2><ul class="credits">${p.credits.map(([t, u]) => `<li>${u ? `<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>` : esc(t)}</li>`).join("")}</ul>` : ""}
     <div class="links">${p.repo ? `<a class="btn solid" href="${p.repo}" target="_blank" rel="noopener">View code on GitHub</a>` : ""}${p.devpost ? `<a class="btn solid" href="${p.devpost}" target="_blank" rel="noopener">See it on Devpost</a>` : ""}</div>`;

@@ -240,3 +240,5 @@ ul.credits { color: var(--muted); font-size: 14.5px; }
 .gallery.split { grid-template-columns: 1fr 2.6fr; align-items: start; }
 .gallery.split figure.shot .footprint { aspect-ratio: auto; height: 380px; }
 @media (max-width: 640px) { .gallery.split { grid-template-columns: 1fr; } .gallery.split figure.shot .footprint { height: auto; aspect-ratio: 4 / 3; } }
+.b-status { color: #062414; background: #5ee08f; }
+.now-note { max-width: 70ch; margin: 0; padding: 12px 16px; border-left: 3px solid var(--copper); background: var(--surface); border-radius: 0 8px 8px 0; }
