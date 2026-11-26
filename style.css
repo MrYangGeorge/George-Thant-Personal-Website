@@ -172,7 +172,7 @@ figure.shot figcaption { font-size: 12.5px; color: var(--muted); }
 .gallery.stack { grid-template-columns: 1fr; gap: 18px; }
 .gallery.stack .side { gap: 18px; }
 .gallery.stack figure.shot .footprint, .gallery.stack .side figure.shot .footprint { aspect-ratio: auto; height: auto; }
-.gallery.stack figure.shot img { position: static; width: 100%; height: auto; max-height: 560px; }
+.gallery.stack figure.shot img { position: static; width: 100%; height: auto; max-height: 760px; }
 .prow-body { padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; }
 .prow-top { display: flex; gap: 10px; align-items: baseline; min-width: 0; }
 .prow h3 { margin: 0; font-family: var(--font-head); font-size: 17px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
@@ -231,3 +231,6 @@ footer.site .wrap { padding-block: 18px; display: flex; justify-content: space-b
 .skill-chips { margin-top: 4px; }
 .skill-chips span { font-size: 12.5px; padding: 4px 10px; background: var(--surface); }
 ul.credits { color: var(--muted); font-size: 14.5px; }
+.gallery.trio { grid-template-columns: repeat(3, 1fr); }
+.gallery.trio figure.shot .footprint { aspect-ratio: 3 / 4; }
+@media (max-width: 640px) { .gallery.trio { grid-template-columns: 1fr; } }

@@ -11,9 +11,11 @@ const IRR = [
 const SWITCH = [
   { src: IMG + "light-switch-mounted.jpg", thumb: IMG + "light-switch-mounted-thumb.jpg", cap: "Mounted over the wall switch" },
   { src: IMG + "light-switch-breadboard.jpg", cap: "ESP32 and USB-C 5 V power on the breadboard" },
+  { src: IMG + "light-switch-phone.jpg", cap: "Control page on a phone at lightswitch.local" },
   { src: IMG + "light-switch-wiring.png", cap: "Wiring diagram" }
 ];
 const MIPS = [{ src: IMG + "mips-decode-stage.png", thumb: IMG + "mips-decode-stage-thumb.png", cap: "Decode-stage block diagram (from the course lab handout)" }];
+const ARM = [{ src: IMG + "armadillo-wiring.jpg", thumb: IMG + "armadillo-wiring-thumb.jpg", cap: "Initial wiring plan. Mechanical CAD is still in progress." }];
 const SPIDER = { src: IMG + "spider-robot.jpg", thumb: IMG + "spider-robot-thumb.jpg" };
 const RCCAR = { src: IMG + "rc-car.jpg", thumb: IMG + "rc-car-thumb.jpg" };
 const BADGE = { Personal: "b-personal", Team: "b-team", Hackathon: "b-hack", Course: "b-course" };
@@ -34,13 +36,14 @@ const projects = [
       "Designed a FastAPI backend that applies sensor thresholds to decide when to water, with low-water safety checks and an automatic/manual mode.",
       "Defined REST endpoints shared by two frontends, including an AI chat interface that explains plant status."],
     skills: ["Multi-sensor integration on an ESP32", "Streaming JSON over Wi-Fi and WebSockets", "Threshold control with safety checks", "Driving a pump through an L298N", "KiCad schematic capture"] },
-  { id: "armadillo", soon: true, cat: "embedded", title: "ArmAdillo Color-Sorting Robot Arm", badges: [["Team","Zims Robotics Club"],["Team","Electrical lead"]], date: "Fall 2026 – Present",
-    stack: "ESP32 · I²C · PCA9685 · AS5600 · PWM",
-    short: "Electrical team lead for a six-degree-of-freedom competition arm. Evaluating magnetic encoders and planning I²C servo control.",
+  { id: "armadillo", gallery: ARM, img: ARM[0].thumb, fit: "contain", cat: "embedded", title: "ArmAdillo Color-Sorting Robot Arm", badges: [["Team","Zims Robotics Club"],["Team","Electrical lead"]], date: "Fall 2026 – Present",
+    stack: "ESP32 · PCA9685 · AS5600 · TCA9548A · I²C · PWM",
+    short: "Electrical team lead for a six-degree-of-freedom competition arm. Planned the wiring for seven servos and three joint encoders on one I²C bus.",
     bullets: ["Serve as electrical team lead and oversee sensor integration for a six-degree-of-freedom color-sorting competition arm.",
-      "Evaluating AS5600 magnetic encoders for joint-angle feedback at three joints.",
-      "Planning I²C connections and PCA9685 servo control for the winter build."],
-    skills: ["Leading an electrical team", "Planning an I²C bus (PCA9685, AS5600)", "Choosing sensors for joint feedback"] },
+      "Planned the initial wiring: an ESP32 drives seven servos (six joints and the gripper) through a PCA9685 PWM board over I²C.",
+      "Added a TCA9548A I²C multiplexer so three AS5600 magnetic encoders, which all share one fixed address, can report joint angles on the same bus.",
+      "Split the power: a fused 6 V, 20 A supply for the servos and a separate 5 V, 2 A supply for the ESP32. Mechanical CAD is still in progress."],
+    skills: ["Leading an electrical team", "I²C bus design with a multiplexer", "Servo power budgeting and fusing", "Choosing sensors for joint feedback"] },
   { id: "switch", repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
     stack: "ESP32 · PWM · servo · USB-C 5 V",
     short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
@@ -125,7 +128,7 @@ function thumb(p, label) {
 }
 function galleryHTML(p) {
   const shot = g => `<figure class="shot"><div class="footprint has-img fit${p.dark ? " dark" : ""}"><img src="${g.src}" alt="${esc(g.cap)}"></div><figcaption>${esc(g.cap)}</figcaption></figure>`;
-  if (p.layout === "switch") return `<div class="gallery pair">${shot(p.gallery[0])}${shot(p.gallery[1])}</div><div class="gallery stack" style="margin-top:-12px">${shot(p.gallery[2])}</div>`;
+  if (p.layout === "switch") return `<div class="gallery trio">${p.gallery.slice(0, 3).map(shot).join("")}</div><div class="gallery stack" style="margin-top:-12px">${shot(p.gallery[3])}</div>`;
   if (p.layout === "pair") return `<div class="gallery pair">${p.gallery.map(shot).join("")}</div>`;
   return `<div class="gallery stack">${shot(p.gallery[0])}<div class="side">${p.gallery.slice(1).map(shot).join("")}</div></div>`;
 }
