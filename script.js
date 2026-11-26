@@ -18,6 +18,10 @@ const MIPS = [{ src: IMG + "mips-decode-stage.png", thumb: IMG + "mips-decode-st
 const ARM = [{ src: IMG + "armadillo-wiring.jpg", thumb: IMG + "armadillo-wiring-thumb.jpg", cap: "Initial wiring plan. Mechanical CAD is still in progress." }];
 const SPIDER = { src: IMG + "spider-robot.jpg", thumb: IMG + "spider-robot-thumb.jpg" };
 const RCCAR = { src: IMG + "rc-car.jpg", thumb: IMG + "rc-car-thumb.jpg" };
+const RCCAR_MEDIA = [
+  { video: IMG + "rc-car-demo.mp4", poster: IMG + "rc-car-demo-poster.jpg", cap: "Driving it from a phone over Bluetooth" },
+  { src: IMG + "rc-car.jpg", cap: "The finished car" }
+];
 const BADGE = { Personal: "b-personal", Team: "b-team", Hackathon: "b-hack", Course: "b-course" };
 const projects = [
   { id: "drone", gallery: DRONE, img: DRONE[0].thumb, dark: true, layout: "pair", cat: "embedded", title: "Quadcopter Build and Autonomous Flight", badges: [["Course","Course · Drones"],["Team","Team"]], date: "Fall 2026",
@@ -70,7 +74,7 @@ const projects = [
       "Worked with teammates to diagnose wiring and mechanical faults during assembly."],
     credits: [["Original design and code: Regis Hsu, SpiderRobot", "https://github.com/regishsu/SpiderRobot"], ["Build guide: ROBOT Lk", ""]],
     skills: ["3D printing and mechanical assembly", "Wiring and calibrating 12 servos", "Reading and adapting someone else's firmware", "Finding a pin conflict between a sensor and serial output"] },
-  { id: "rccar", img: RCCAR.thumb, full: RCCAR.src, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
+  { id: "rccar", img: RCCAR.thumb, gallery: RCCAR_MEDIA, layout: "pair-tall", hasVideo: true, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
     stack: "Arduino Uno · C++ · Adafruit Motor Shield · HC-SR04 · Bluetooth",
     short: "A four-wheel mecanum car driven from a phone over Bluetooth that stops by itself when something is within 30 cm. Built for UCI's Summer Bridge Tech Challenge.",
     bullets: ["Wrote the Arduino C++ firmware: Bluetooth serial commands for forward, back, turns, spins and speed up/down across four DC motors.",
@@ -125,14 +129,15 @@ function esc(s) { return s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">"
 function badgeHTML(p) { return p.badges.map(([k,label]) => `<span class="badge ${BADGE[k]}">${esc(label)}</span>`).join(""); }
 
 function thumb(p, label) {
-  if (p.img) return `<div class="footprint has-img${p.fit ? " fit" : ""}${p.dark ? " dark" : ""}"><img src="${p.img}" alt="${esc(p.title)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ""}></div>`;
+  if (p.img) return `<div class="footprint has-img${p.fit ? " fit" : ""}${p.dark ? " dark" : ""}">${p.hasVideo && label === "PHOTO" ? `<span class="vid-tag">▶ VIDEO</span>` : ""}<img src="${p.img}" alt="${esc(p.title)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ""}></div>`;
   if (p.art || (!p.img && !p.soon)) return `<div class="footprint art"><svg class="trace-art" viewBox="0 0 200 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="base" fill="none" stroke="#FFD200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-5 30H60l15 15h50l10-10h70"/><path d="M-5 60h40l15 15h70l15-15h70"/><path d="M-5 95h75l15-15h40l15 15h65"/><path d="M-5 120h30l10-10h50"/><path d="M120 120h85"/><path d="M150 15v20l10 10h45"/></g><g class="sig"><path d="M-5 30H60l15 15h50l10-10h70" style="animation-delay:-0.00s"/><path d="M-5 60h40l15 15h70l15-15h70" style="animation-delay:-0.27s"/><path d="M-5 95h75l15-15h40l15 15h65" style="animation-delay:-0.54s"/><path d="M-5 120h30l10-10h50" style="animation-delay:-0.81s"/><path d="M120 120h85" style="animation-delay:-1.08s"/><path d="M150 15v20l10 10h45" style="animation-delay:-1.35s"/></g><g class="pads" fill="#FFD200"><circle cx="135" cy="35" r="4"/><circle cx="35" cy="60" r="4"/><circle cx="85" cy="110" r="4"/><circle cx="120" cy="120" r="4"/><circle cx="150" cy="15" r="4"/><rect x="104" y="76" width="12" height="8" rx="1"/></g><g fill="#163a70"><circle cx="135" cy="35" r="1.6"/><circle cx="35" cy="60" r="1.6"/><circle cx="85" cy="110" r="1.6"/><circle cx="120" cy="120" r="1.6"/><circle cx="150" cy="15" r="1.6"/></g></svg></div>`;
   if (p.soon) return `<div class="footprint soon"><span>PHOTO<br>COMING<br>SOON</span></div>`;
   return `<div class="footprint">${label}</div>`;
 }
 function galleryHTML(p) {
-  const shot = g => `<figure class="shot"><div class="footprint has-img fit${p.dark ? " dark" : ""}"><img src="${g.src}" alt="${esc(g.cap)}"></div><figcaption>${esc(g.cap)}</figcaption></figure>`;
+  const shot = g => `<figure class="shot"><div class="footprint has-img fit${p.dark || g.video ? " dark" : ""}">${g.video ? `<video src="${g.video}" poster="${g.poster}" muted autoplay loop playsinline controls aria-label="${esc(g.cap)}"></video>` : `<img src="${g.src}" alt="${esc(g.cap)}" loading="lazy">`}</div><figcaption>${esc(g.cap)}</figcaption></figure>`;
   if (p.layout === "switch") return `<div class="gallery trio">${p.gallery.slice(0, 3).map(shot).join("")}</div><div class="gallery stack" style="margin-top:-12px">${shot(p.gallery[3])}</div>`;
+  if (p.layout === "pair-tall") return `<div class="gallery pair tall">${p.gallery.map(shot).join("")}</div>`;
   if (p.layout === "pair") return `<div class="gallery pair">${p.gallery.map(shot).join("")}</div>`;
   return `<div class="gallery stack">${shot(p.gallery[0])}<div class="side">${p.gallery.slice(1).map(shot).join("")}</div></div>`;
 }
