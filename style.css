@@ -227,3 +227,7 @@ figure.shot figcaption { font-size: 12.5px; color: var(--muted); }
 .contact-list a:hover { text-decoration: underline; }
 footer.site { background: var(--mask); color: var(--silk-dim); }
 footer.site .wrap { padding-block: 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+.skill-chips { margin-top: 4px; }
+.skill-chips span { font-size: 12.5px; padding: 4px 10px; background: var(--surface); }
+ul.credits { color: var(--muted); font-size: 14.5px; }
