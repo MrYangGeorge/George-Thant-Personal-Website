@@ -1,312 +1,239 @@
-// George Yang Portfolio - Interactive JavaScript
-
-// ============================================
-// NAVIGATION & SCROLL HANDLING
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const header = document.getElementById('header');
-    const navItems = document.querySelectorAll('.nav-item');
-    const navIndicator = document.getElementById('navIndicator');
-    const sections = document.querySelectorAll('section[id]');
-
-    // Track scroll for header shadow effect
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-
-        // Add shadow to header when scrolled
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Update active navigation based on scroll position
-        updateActiveNavigation();
-
-        lastScroll = currentScroll;
-    });
-
-    // ============================================
-    // ACTIVE NAVIGATION INDICATOR
-    // ============================================
-
-    function updateActiveNavigation() {
-        let currentSection = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-
-            if (window.pageYOffset >= (sectionTop - 200)) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-
-            if (item.getAttribute('data-section') === currentSection) {
-                item.classList.add('active');
-                updateIndicator(item);
-            }
-        });
-    }
-
-    // Update navigation indicator position
-    function updateIndicator(activeItem) {
-        if (!activeItem) {
-            const firstItem = document.querySelector('.nav-item.active');
-            activeItem = firstItem || navItems[0];
-        }
-
-        const itemRect = activeItem.getBoundingClientRect();
-        const navRect = activeItem.parentElement.getBoundingClientRect();
-
-        navIndicator.style.width = itemRect.width + 'px';
-        navIndicator.style.left = (itemRect.left - navRect.left) + 'px';
-    }
-
-    // Initialize indicator position
-    setTimeout(() => {
-        const activeItem = document.querySelector('.nav-item.active');
-        if (activeItem) {
-            updateIndicator(activeItem);
-        }
-    }, 100);
-
-    // Update indicator on window resize
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            const activeItem = document.querySelector('.nav-item.active');
-            if (activeItem) {
-                updateIndicator(activeItem);
-            }
-        }, 250);
-    });
-
-    // ============================================
-    // SMOOTH SCROLLING FOR NAVIGATION
-    // ============================================
-
-    navItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const headerHeight = header.offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Update active class immediately
-                navItems.forEach(navItem => navItem.classList.remove('active'));
-                this.classList.add('active');
-                updateIndicator(this);
-            }
-        });
-    });
-
-    // ============================================
-    // FADE-IN ANIMATION ON SCROLL
-    // ============================================
-
-    const fadeElements = document.querySelectorAll('.fade-in');
-
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    fadeElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        fadeObserver.observe(element);
-    });
-
-    // ============================================
-    // SKILL PROGRESS ANIMATION
-    // ============================================
-
-    const skillBars = document.querySelectorAll('.skill-progress');
-
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bar = entry.target;
-                const width = bar.style.width;
-                bar.style.width = '0%';
-
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 100);
-
-                skillObserver.unobserve(bar);
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-
-    skillBars.forEach(bar => {
-        skillObserver.observe(bar);
-    });
-
-    // ============================================
-    // PROJECT CARD INTERACTIONS
-    // ============================================
-
-    const projectCards = document.querySelectorAll('.project-card');
-
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-
-    // ============================================
-    // FOOTER LINK SMOOTH SCROLL
-    // ============================================
-
-    const footerLinks = document.querySelectorAll('.footer-link');
-
-    footerLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                if (targetSection) {
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // ============================================
-    // EXTERNAL LINKS - OPEN IN NEW TAB
-    // ============================================
-
-    const externalLinks = document.querySelectorAll('a[target="_blank"]');
-
-    externalLinks.forEach(link => {
-        if (!link.hasAttribute('rel')) {
-            link.setAttribute('rel', 'noopener noreferrer');
-        }
-    });
-
-    // ============================================
-    // TYPING EFFECT FOR HERO (OPTIONAL)
-    // ============================================
-
-    // Uncomment below to enable typing effect on hero tagline
-    /*
-    const heroTagline = document.querySelector('.hero-tagline');
-    const originalText = heroTagline.textContent;
-    heroTagline.textContent = '';
-
-    let charIndex = 0;
-
-    function typeText() {
-        if (charIndex < originalText.length) {
-            heroTagline.textContent += originalText.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeText, 50);
-        }
-    }
-
-    setTimeout(typeText, 500);
-    */
-
-    // ============================================
-    // CONSOLE MESSAGE
-    // ============================================
-
-    console.log('%c👋 Hello, Developer!', 'font-size: 20px; font-weight: bold; color: #3350b4;');
-    console.log('%cThanks for checking out my portfolio.', 'font-size: 14px; color: #495057;');
-    console.log('%cBuilt with vanilla JavaScript, HTML, and CSS.', 'font-size: 12px; color: #868e96;');
-
-    // ============================================
-    // KEYBOARD NAVIGATION
-    // ============================================
-
-    document.addEventListener('keydown', function(e) {
-        // Navigate sections with arrow keys (optional feature)
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-            const activeNav = document.querySelector('.nav-item.active');
-            if (!activeNav) return;
-
-            const allNavItems = Array.from(navItems);
-            const currentIndex = allNavItems.indexOf(activeNav);
-
-            let newIndex;
-            if (e.key === 'ArrowDown') {
-                newIndex = Math.min(currentIndex + 1, allNavItems.length - 1);
-            } else {
-                newIndex = Math.max(currentIndex - 1, 0);
-            }
-
-            if (newIndex !== currentIndex && !e.shiftKey) {
-                // Only trigger if not selecting text
-                e.preventDefault();
-                allNavItems[newIndex].click();
-            }
-        }
-    });
-
-    // ============================================
-    // PERFORMANCE OPTIMIZATION
-    // ============================================
-
-    // Lazy load images when they come into view (if images are added)
-    const images = document.querySelectorAll('img[data-src]');
-
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-
-    // ============================================
-    // INITIAL SETUP COMPLETE
-    // ============================================
-
-    console.log('%c✓ Portfolio initialized successfully', 'color: #51cf66; font-weight: bold;');
+const IMG = "images/projects/";
+const DRONE = [
+  { src: IMG + "drone-top.jpg", thumb: IMG + "drone-top-thumb.jpg", cap: "Top view" },
+  { src: IMG + "drone-angle.jpg", cap: "Another angle" }
+];
+const IRR = [
+  { src: IMG + "irrigation-esp32.png", thumb: IMG + "irrigation-esp32-thumb.png", cap: "ESP32-S3 pin assignment" },
+  { src: IMG + "irrigation-sensors.png", cap: "Temperature/humidity, soil moisture and sunlight sensors" },
+  { src: IMG + "irrigation-motor-driver.png", cap: "Water-level sensor and L298N pump driver" }
+];
+const SWITCH = [
+  { src: IMG + "light-switch-mounted.jpg", thumb: IMG + "light-switch-mounted-thumb.jpg", cap: "Mounted over the wall switch" },
+  { src: IMG + "light-switch-breadboard.jpg", cap: "ESP32 and USB-C 5 V power on the breadboard" },
+  { src: IMG + "light-switch-wiring.png", cap: "Wiring diagram" }
+];
+const MIPS = [{ src: IMG + "mips-decode-stage.png", thumb: IMG + "mips-decode-stage-thumb.png", cap: "Decode-stage block diagram (from the course lab handout)" }];
+const SPIDER = { src: IMG + "spider-robot.jpg", thumb: IMG + "spider-robot-thumb.jpg" };
+const RCCAR = { src: IMG + "rc-car.jpg", thumb: IMG + "rc-car-thumb.jpg" };
+const BADGE = { Personal: "b-personal", Team: "b-team", Hackathon: "b-hack", Course: "b-course" };
+const projects = [
+  { id: "drone", gallery: DRONE, img: DRONE[0].thumb, dark: true, layout: "pair", cat: "embedded", title: "Quadcopter Build: Avionics and Telemetry", badges: [["Course","Course · Drones"],["Team","Team · In progress"]], date: "Fall 2026 – Present",
+    stack: "ArduPilot · Matek F405-WING · ESP32-C3 · ExpressLRS · GPS",
+    short: "Building a drone from parts. Linked the flight controller to a ground station over Wi-Fi and checked the telemetry against the real board.",
+    bullets: ["Building a quadcopter from parts: flight controller, ExpressLRS radio link, brushless motors and ESCs, GPS, video and Wi-Fi telemetry, running ArduPilot.",
+      "Connected the flight controller to a ground station over Wi-Fi through an ESP32-C3.",
+      "Verified attitude telemetry by tilting the board and checking the on-screen artificial horizon.",
+      "Working toward a fully autonomous waypoint mission: takeoff, waypoint and auto-land."] },
+  { id: "irrigation", cat: "embedded", title: "Smart Irrigation System", badges: [["Hackathon","StarkHacks · Purdue"],["Team","Team"]], date: "Apr 2026",
+    stack: "ESP32 · Python · FastAPI · WebSockets", repo: "https://github.com/MrYangGeorge/Groot", devpost: "https://devpost.com/software/leaf-it-to-us-yvn8ls", gallery: IRR, img: IRR[0].thumb, fit: "contain",
+    short: "ESP32 reads soil-moisture, temperature/humidity, water-level and light sensors and decides when to run a water pump.",
+    bullets: ["Built an ESP32 system that reads soil-moisture, temperature/humidity, water-level, and light sensors to control a water pump.",
+      "Wrote and debugged firmware that streams JSON sensor data over Wi-Fi to a Python server.",
+      "Designed a FastAPI backend that applies sensor thresholds to decide when to water, with low-water safety checks and an automatic/manual mode.",
+      "Defined REST endpoints shared by two frontends, including an AI chat interface that explains plant status."] },
+  { id: "armadillo", soon: true, cat: "embedded", title: "ArmAdillo Color-Sorting Robot Arm", badges: [["Team","Zims Robotics Club"],["Team","Electrical lead"]], date: "Fall 2026 – Present",
+    stack: "ESP32 · I²C · PCA9685 · AS5600 · PWM",
+    short: "Electrical team lead for a six-degree-of-freedom competition arm. Evaluating magnetic encoders and planning I²C servo control.",
+    bullets: ["Serve as electrical team lead and oversee sensor integration for a six-degree-of-freedom color-sorting competition arm.",
+      "Evaluating AS5600 magnetic encoders for joint-angle feedback at three joints.",
+      "Planning I²C connections and PCA9685 servo control for the winter build."] },
+  { id: "switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
+    stack: "ESP32 · PWM · servo · USB-C 5 V",
+    short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
+    bullets: ["Built a web page served by the ESP32 that turns a wall light switch on and off over Wi-Fi.",
+      "Calibrated the servo's on, off and rest positions for the switch's travel. The arm returns to rest after each press so the switch still works by hand.",
+      "Powered the servo and ESP32 from a USB-C 5 V breakout instead of the board's 3.3 V pin, with capacitors on the 5 V rail.",
+      "Kept the firmware non-blocking so the web server stays responsive while the servo moves."] },
+  { id: "focus", cat: "embedded", title: "IoT Focus-Monitoring System", badges: [["Hackathon","IrvineHacks"],["Team","Team"]], date: "Feb 2026",
+    stack: "Arduino UNO Q · C++ · Python · I²C · Supabase · React", repo: "https://github.com/MrYangGeorge/LOOKIE_DOOKIE", devpost: "https://devpost.com/software/lookie-dookie",
+    short: "A study-focus tool on an Arduino UNO Q: a USB camera runs face detection while sensors read room light and temperature, and a React dashboard tracks each session.",
+    bullets: ["Ran Arduino's face-detection model on a USB camera connected to an Arduino UNO Q and streamed each detection's confidence to the dashboard as a live focus score.",
+      "Wrote the microcontroller sketch: reads an analog light sensor and a Modulino temperature sensor over I²C, shares the readings with the Linux side through the Arduino Bridge, and lights an LED when the room gets too dark.",
+      "Sent the readings over WebSockets to a React dashboard that logs study sessions to Supabase, and pauses the timer and sounds an alarm when you leave the study tab mid-session.",
+      "Blink-rate and eyes-closed values were placeholders in the hackathon demo, so the drowsiness alarm wasn't driven by real eye data yet. A fatigue model based on pose keypoints was started but not connected."] },
+  { id: "spider", img: SPIDER.thumb, full: SPIDER.src, repo: "https://github.com/MrYangGeorge/spider-robot", cat: "embedded", title: "Spider Robot", badges: [["Team","Team"],["Team","Open-source build"]], date: "Mar 2026",
+    stack: "Arduino · C++ · Servos · Ultrasonic",
+    short: "Our build of an open-source four-legged robot with 12 servos and an ultrasonic sensor. It steps back and turns when something is in its way.",
+    bullets: ["Based on Regis Hsu's open-source quadruped design and code, built following ROBOT Lk's guide.",
+      "3D-printed the parts, assembled and wired 12 servos and an HC-SR04 sensor, and calibrated the legs.",
+      "Moved the ultrasonic sensor off the serial pins so it no longer conflicted with debug output.",
+      "Worked with teammates to diagnose wiring and mechanical faults during assembly."] },
+  { id: "rccar", img: RCCAR.thumb, full: RCCAR.src, pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Detection", badges: [["Team","Team · Award"]], date: "Jun 2025",
+    stack: "Arduino C++ · HC-SR04 · AFMotor Shield",
+    short: "Collision-avoiding car with Bluetooth switching between autonomous and manual driving. Won a Summer Bridge Challenge award.",
+    bullets: ["Programmed a collision-avoidance vehicle with ultrasonic sensing and DC motor control.",
+      "Added Bluetooth switching between autonomous and manual operation.",
+      "The team earned a Summer Bridge Challenge award."] },
+  { id: "mips", gallery: MIPS, img: MIPS[0].thumb, fit: "contain", cat: "digital", title: "Pipelined MIPS Processor", badges: [["Course","Course · Computer Architecture"]], date: "Fall 2026",
+    stack: "Verilog · Vivado XSim",
+    short: "Instruction-fetch and ALU control logic for a pipelined CPU, passing forwarding, stall, branch and jump tests.",
+    bullets: ["Implemented instruction-fetch and ALU control logic.", "Passed simulation tests for forwarding, data stalls, branches, and jumps."] },
+  { id: "adder", cat: "digital", title: "4-Bit CMOS Adder/Subtractor", badges: [["Course","Course · VLSI Design"]], date: "Fall 2026",
+    stack: "Cadence Virtuoso · Spectre · DRC/LVS",
+    short: "A four-bit datapath built from transistor-level cells. Passed DRC and LVS and six arithmetic test cases.",
+    bullets: ["Built a four-bit datapath from transistor-level cells.", "Passed design-rule and layout-versus-schematic checks and verified six arithmetic test cases.",
+      "Compared schematic and extracted-layout waveforms to examine switching during input transitions."] },
+  { id: "ringosc", cat: "digital", title: "CMOS Inverter and Ring Oscillator", badges: [["Course","Course · VLSI Design"]], date: "Fall 2026",
+    stack: "Cadence Virtuoso · Spectre",
+    short: "Inverter delay of 63.64 ps. Layout extraction dropped the oscillator from 1.987 GHz to 1.769 GHz.",
+    bullets: ["Measured a simulated inverter propagation delay of 63.64 ps.", "Layout extraction reduced the simulated oscillator frequency from 1.987 GHz to 1.769 GHz."] },
+  { id: "flightdb", art: true, cat: "software", title: "Flight Reservation Database App", badges: [["Course","Course · Databases"]], date: "2026",
+    stack: "Python · PyMySQL · MySQL",
+    short: "Menu-driven app over a 9-table flights database with search, insert, update and delete.",
+    bullets: ["Built a menu-driven application over a 9-table relational flights database supporting search, insert, update, and delete.",
+      "Wrote parameterized SQL with multi-table JOINs, GROUP BY/HAVING, and transaction commits."] },
+  { id: "cookie", art: true, cat: "software", title: "Cookie Calories Calculator", badges: [["Course","Course · C++ Data Structures"],["Team","Team"]], date: "Spring 2024",
+    stack: "C++ · linked list", repo: "https://github.com/MrYangGeorge/cookie-calories-calculator",
+    short: "Console app that stores recipes in a custom linked list and works out how many servings fit a calorie budget.",
+    bullets: ["Stored recipes in a custom singly linked list with copy constructor, assignment operator and destructor.",
+      "Added a servings calculator that divides a calorie budget by calories per serving."] },
+  { id: "greenscreen", art: true, cat: "software", title: "GreenScreen Image Compositor", badges: [["Course","Course · C++ Programming"]], date: "2024",
+    stack: "C++ · pointers · image processing",
+    short: "Extracts objects from images by color threshold and composites them onto new backgrounds.",
+    bullets: ["Used C++ pointers to process pixel arrays for green-screen transparency and alpha compositing."] },
+];
+const GROUPS = [
+  { key: "builds", show: 4, match: p => p.cat === "embedded" },
+  { key: "course", show: 3, match: p => p.cat !== "embedded" }
+];
+const expanded = { builds: false, course: false };
+
+function esc(s) { return s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c])); }
+function badgeHTML(p) { return p.badges.map(([k,label]) => `<span class="badge ${BADGE[k]}">${esc(label)}</span>`).join(""); }
+
+function thumb(p, label) {
+  if (p.img) return `<div class="footprint has-img${p.fit ? " fit" : ""}${p.dark ? " dark" : ""}"><img src="${p.img}" alt="${esc(p.title)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ""}></div>`;
+  if (p.art || (!p.img && !p.soon)) return `<div class="footprint art"><svg class="trace-art" viewBox="0 0 200 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="base" fill="none" stroke="#FFD200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-5 30H60l15 15h50l10-10h70"/><path d="M-5 60h40l15 15h70l15-15h70"/><path d="M-5 95h75l15-15h40l15 15h65"/><path d="M-5 120h30l10-10h50"/><path d="M120 120h85"/><path d="M150 15v20l10 10h45"/></g><g class="sig"><path d="M-5 30H60l15 15h50l10-10h70" style="animation-delay:-0.00s"/><path d="M-5 60h40l15 15h70l15-15h70" style="animation-delay:-0.27s"/><path d="M-5 95h75l15-15h40l15 15h65" style="animation-delay:-0.54s"/><path d="M-5 120h30l10-10h50" style="animation-delay:-0.81s"/><path d="M120 120h85" style="animation-delay:-1.08s"/><path d="M150 15v20l10 10h45" style="animation-delay:-1.35s"/></g><g class="pads" fill="#FFD200"><circle cx="135" cy="35" r="4"/><circle cx="35" cy="60" r="4"/><circle cx="85" cy="110" r="4"/><circle cx="120" cy="120" r="4"/><circle cx="150" cy="15" r="4"/><rect x="104" y="76" width="12" height="8" rx="1"/></g><g fill="#163a70"><circle cx="135" cy="35" r="1.6"/><circle cx="35" cy="60" r="1.6"/><circle cx="85" cy="110" r="1.6"/><circle cx="120" cy="120" r="1.6"/><circle cx="150" cy="15" r="1.6"/></g></svg></div>`;
+  if (p.soon) return `<div class="footprint soon"><span>PHOTO<br>COMING<br>SOON</span></div>`;
+  return `<div class="footprint">${label}</div>`;
+}
+function galleryHTML(p) {
+  const shot = g => `<figure class="shot"><div class="footprint has-img fit${p.dark ? " dark" : ""}"><img src="${g.src}" alt="${esc(g.cap)}"></div><figcaption>${esc(g.cap)}</figcaption></figure>`;
+  if (p.layout === "switch") return `<div class="gallery pair">${shot(p.gallery[0])}${shot(p.gallery[1])}</div><div class="gallery stack" style="margin-top:-12px">${shot(p.gallery[2])}</div>`;
+  if (p.layout === "pair") return `<div class="gallery pair">${p.gallery.map(shot).join("")}</div>`;
+  return `<div class="gallery stack">${shot(p.gallery[0])}<div class="side">${p.gallery.slice(1).map(shot).join("")}</div></div>`;
+}
+function rowHTML(p) {
+  return `
+    <button type="button" class="prow" data-id="${p.id}" aria-label="Open ${esc(p.title)}">
+      ${thumb(p, "PHOTO")}
+      <div class="prow-body">
+        <div class="prow-top"><h3>${esc(p.title)}</h3><span class="date">${esc(p.date)}</span></div>
+        <p>${esc(p.short)}</p>
+        <div class="prow-foot"><div class="badges">${badgeHTML(p)}</div><span class="stack">${esc(p.stack)}</span><span class="arrow">→</span></div>
+      </div>
+    </button>`;
+}
+function renderGrid() {
+  for (const g of GROUPS) {
+    const list = projects.filter(g.match);
+    const shown = expanded[g.key] ? list : list.slice(0, g.show);
+    document.getElementById("grid-" + g.key).innerHTML = shown.map(rowHTML).join("");
+    const rest = list.length - g.show;
+    document.getElementById("more-" + g.key).innerHTML = rest > 0
+      ? `<button type="button" id="more-btn-${g.key}" data-k="${g.key}">${expanded[g.key] ? "Show fewer" : `See ${rest} more`}</button>` : "";
+  }
+}
+function renderDetail(p) {
+  document.getElementById("detail").innerHTML = `
+    <button type="button" class="back" id="back">← All projects</button>
+    <div class="badges">${badgeHTML(p)}</div>
+    <h1>${esc(p.title)}</h1>
+    <p class="meta">${esc(p.date)} · ${esc(p.stack)}</p>
+    <p class="summary">${esc(p.short)}</p>
+    ${p.gallery ? galleryHTML(p) : `<div class="gallery single${p.art ? " art-strip" : ""}">${thumb(p.full ? { ...p, img: p.full, pos: null } : p, "")}</div>`}
+    <h2>What I built</h2>
+    <ul>${p.bullets.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
+    <div class="links">${p.repo ? `<a class="btn solid" href="${p.repo}" target="_blank" rel="noopener">View code on GitHub</a>` : ""}${p.devpost ? `<a class="btn solid" href="${p.devpost}" target="_blank" rel="noopener">See it on Devpost</a>` : ""}</div>`;
+  document.getElementById("back").addEventListener("click", () => { location.hash = "projects"; });
+}
+function route() {
+  const h = location.hash.slice(1);
+  const p = projects.find(x => "p-" + x.id === h);
+  document.getElementById("home-view").hidden = !!p;
+  document.getElementById("detail-view").hidden = !p;
+  if (p) { renderDetail(p); window.scrollTo(0, 0); }
+  else if (h) { const el = document.getElementById(h); if (el) el.scrollIntoView(); }
+  document.querySelectorAll("nav.main a:not(.resume)").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + (p ? "projects" : (h || "about"))));
+  if (!p) drawBoard();
+}
+document.getElementById("projects").addEventListener("click", e => {
+  const c = e.target.closest(".prow"); if (c) { location.hash = "p-" + c.dataset.id; return; }
+  const b = e.target.closest(".see-more button"); if (!b) return;
+  const k = b.dataset.k; expanded[k] = !expanded[k]; renderGrid();
+  if (!expanded[k]) document.getElementById("grid-" + k).parentElement.scrollIntoView();
 });
+
+/* PCB traces: routed copper on a 20px grid with 45-degree bends, vias and pads; small signal pulses travel along them. */
+const cv = document.getElementById("traces");
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let traces = [], pulses = [], raf = 0, W = 0, H = 0;
+function rng(seed) { return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
+function buildTraces() {
+  const r = rng(20260); const G = 20; traces = [];
+  const rows = Math.floor(H / G);
+  for (let i = 1; i < rows; i += 1) {
+    if (r() < 0.35) continue;
+    let x = W + 10, y = i * G; const pts = [[x, y]];
+    let len = W * (0.25 + r() * 0.5);
+    while (len > 0) {
+      const run = G * (2 + Math.floor(r() * 8)); x -= run; len -= run; pts.push([x, y]);
+      if (r() < 0.5 && len > 0) { const d = (r() < 0.5 ? -1 : 1) * G; x -= G; y += d; pts.push([x, y]); }
+    }
+    traces.push({ pts, end: r() < 0.6 ? "via" : "pad" });
+  }
+}
+function draw() {
+  const ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, W, H);
+  ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.lineCap = "round";
+  ctx.strokeStyle = "rgba(255,210,0,0.34)";
+  for (const tr of traces) {
+    ctx.beginPath(); tr.pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke();
+    const [ex, ey] = tr.pts[tr.pts.length - 1];
+    if (tr.end === "via") { ctx.beginPath(); ctx.arc(ex, ey, 4.5, 0, Math.PI * 2); ctx.fillStyle = "rgba(255,210,0,0.6)"; ctx.fill(); ctx.beginPath(); ctx.arc(ex, ey, 1.8, 0, Math.PI * 2); ctx.fillStyle = "#163a70"; ctx.fill(); }
+    else { ctx.fillStyle = "rgba(255,210,0,0.55)"; ctx.fillRect(ex - 6, ey - 4, 12, 8); }
+  }
+  if (!reduce) {
+    for (const p of pulses) {
+      const pts = traces[p.i].pts; const seg = Math.min(pts.length - 2, Math.floor(p.s));
+      const f = p.s - seg; const [x1, y1] = pts[seg], [x2, y2] = pts[seg + 1];
+      const x = x1 + (x2 - x1) * f, y = y1 + (y2 - y1) * f;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, 9); g.addColorStop(0, "rgba(255,236,150,0.95)"); g.addColorStop(1, "rgba(255,236,150,0)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.fill();
+      p.s += p.v; if (p.s >= pts.length - 1) { p.s = 0; p.i = Math.floor(Math.random() * traces.length); }
+    }
+    raf = requestAnimationFrame(draw);
+  }
+}
+function drawBoard() {
+  cancelAnimationFrame(raf);
+  const rect = cv.getBoundingClientRect(); if (!rect.width) return;
+  const dpr = window.devicePixelRatio || 1; W = rect.width; H = rect.height;
+  cv.width = W * dpr; cv.height = H * dpr; cv.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0);
+  buildTraces();
+  pulses = traces.length ? Array.from({ length: 6 }, (_, k) => ({ i: (k * 5) % traces.length, s: Math.random() * 3, v: 0.02 + Math.random() * 0.025 })) : [];
+  draw();
+}
+let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawBoard, 150); });
+window.addEventListener("hashchange", route);
+renderGrid(); route();
+
+/* Highlight the nav item for the section in view while scrolling the home page. */
+(() => {
+  const links = [...document.querySelectorAll("nav.main a:not(.resume)")];
+  const ids = ["about", "projects", "contact"];
+  const onScroll = () => {
+    if (document.getElementById("home-view").hidden) return;
+    const y = window.scrollY + 120;
+    let current = "about";
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= y) current = id;
+    }
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = "contact";
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+})();

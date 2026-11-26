@@ -1,31 +1,27 @@
-# Personal Portfolio Website
+# georgethant.com
 
-This is my personal portfolio website, showcasing my projects, skills, and experience in computer engineering and software development.
+Personal portfolio of George Thant, a computer engineering student at UC Irvine working toward embedded systems.
 
-🔗 **Live Site:** https://georgethant.com
+**Live site:** https://georgethant.com
 
-## 🛠️ Tech Stack
-- HTML5  
-- CSS3  
-- JavaScript  
-- GitHub (source control)  
-- Cloudflare Pages (deployment + hosting)  
-- Namecheap (domain purchase)
+## Structure
 
-## 📁 Project Structure
-- `index.html` — main webpage  
-- `style.css` — global styling  
-- `script.js` — interactions and UI behavior  
-- `/images` — images used across the site  
+- `index.html` — page layout: About, Projects, Contact
+- `style.css` — blue PCB theme with UCI gold accents
+- `script.js` — project data, project pages (`#p-<id>`), and the animated circuit-trace header
+- `images/projects/` — project photos (`*-thumb` files are the small versions used in the list)
+- `George_Thant_Resume.pdf` — résumé linked from the Resume buttons
 
-## 🚀 Deployment
-This website is automatically deployed using **Cloudflare Pages** whenever changes are pushed to the connected GitHub repository.
+## Editing projects
 
-## Purpose
-Understanding the workflow of a static website on my own and showcasing my ability and skills, and projects more conveniently. Later on, more projects and apps will be coming soon... To be continued (Current time:) **Nov13 2025** 
+Each project is one entry in the `projects` array in `script.js`: title, badges, date, parts list, short summary, bullets, and optional `repo` / `devpost` links and photos. Entries with `cat: "embedded"` appear under **Hardware builds**; everything else appears under **Coursework**.
 
-## 📬 Contact
-If you'd like to connect or collaborate:
-- Email: yanggeorge6688@gmail.com
-- LinkedIn: www.linkedin.com/in/georgethant-bb4893249
+## Deployment
+
+Plain HTML, CSS and JavaScript with no build step. Cloudflare Pages deploys automatically on every push to `main`.
+
+## Contact
+
+- Email: georgethant03@gmail.com
+- LinkedIn: https://www.linkedin.com/in/georgethant
 - GitHub: https://github.com/MrYangGeorge

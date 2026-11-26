@@ -1,640 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Aung Zin Thant (George) - Computer Engineering Student at UC Irvine. Specializing in embedded systems, circuit design, and hardware-software integration.">
-        <meta name="keywords" content="Aung Zin Thant, George, Computer Engineering, UC Irvine, Arduino, Embedded Systems, Circuit Design">
-        <meta name="author" content="Aung Zin Thant (George)">
-    
-        <title>George Thant | Computer Engineering Student</title>
-    
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-        <!-- Stylesheet -->
-        <link rel="stylesheet" href="style.css?v=2">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>George Thant | Computer Engineering, UC Irvine</title>
+  <meta name="description" content="George Thant is a computer engineering student at UC Irvine working toward embedded systems: ESP32 and Arduino firmware, sensor integration, drones and robotics.">
+  <meta name="author" content="George Thant">
+  <meta name="theme-color" content="#163a70">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="George Thant | Computer Engineering, UC Irvine">
+  <meta property="og:description" content="Embedded systems projects: drones, sensors, robotics and ESP32 firmware.">
+  <meta property="og:url" content="https://georgethant.com/">
+  <meta property="og:image" content="https://georgethant.com/images/projects/drone-top.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Cg stroke='%23FFD200' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M11 2v5M17 2v5M23 2v5M11 27v5M17 27v5M23 27v5M2 11h5M2 17h5M2 23h5M27 11h5M27 17h5M27 23h5'/%3E%3C/g%3E%3Crect x='7' y='7' width='20' height='20' rx='3' fill='%23163a70' stroke='%23FFD200' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
 <body>
-    <!-- Header & Navigation -->
-    <header class="main-header" id="header">
-        <div class="header-wrapper">
-            <div class="header-top">
-                <div class="header-title-section">
-                    <h1>George</h1>
-                    <p class="subtitle"> University of California Irvine | Computer Engineering Student</p>
-                </div>
-            </div>
-            <nav class="nav-container">
-                <div class="nav-items" id="navItems">
-                    <div class="nav-indicator" id="navIndicator"></div>
-                    <a href="#hero" class="nav-item active" data-section="hero">Home</a>
-                    <a href="#about" class="nav-item" data-section="about">About</a>
-                    <a href="#education" class="nav-item" data-section="education">Education</a>
-                    <a href="#experience" class="nav-item" data-section="experience">Experience</a>
-                    <a href="#projects" class="nav-item" data-section="projects">Projects</a>
-                    <a href="#skills" class="nav-item" data-section="skills">Skills</a>
-                    <a href="#contact" class="nav-item" data-section="contact">Contact</a>
-                </div>
-            </nav>
+<header class="site">
+  <div class="wrap header-row">
+    <a class="brand" href="#about">
+      <svg class="chip-logo" viewBox="0 0 34 34" aria-hidden="true">
+        <g stroke="#FFD200" stroke-width="2" stroke-linecap="round">
+          <path d="M11 2v5M17 2v5M23 2v5M11 27v5M17 27v5M23 27v5M2 11h5M2 17h5M2 23h5M27 11h5M27 17h5M27 23h5"/>
+        </g>
+        <rect x="7" y="7" width="20" height="20" rx="3" fill="#0e2a55" stroke="#FFD200" stroke-width="1.5"/>
+        <text x="17" y="21" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#eef3ec">GT</text>
+      </svg>
+      <span>
+        <p class="brand-name">George Thant</p>
+        <p class="brand-sub">Computer Engineering · UC Irvine</p>
+      </span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#about" class="active">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="George_Thant_Resume.pdf" class="resume" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home-view">
+  <section class="board" id="about" aria-label="Introduction">
+    <canvas id="traces" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h1>George Thant</h1>
+      <p class="role">Computer Engineering student at UC Irvine · Minors in Informatics and Computer Science</p>
+      <p class="objective">I want to become an embedded systems engineer because I like following a question from a physical device into the software that controls it. I write firmware that connects sensors and actuators, then test how the hardware responds.</p>
+      <div class="status">
+        <div class="status-head silk"><span class="led"></span>Current status</div>
+        <ul>
+          <li><span class="tag now">NOW</span><span>Building and flying a quadcopter from parts in UCI's Drones course: ArduPilot, ExpressLRS radio, GPS and ESP32 Wi-Fi telemetry</span></li>
+          <li><span class="tag now">NOW</span><span>Leading the electrical team for ArmAdillo, Zims Robotics Club's competition arm, and learning PCB layout in KiCad</span></li>
+          <li><span class="tag next">NEXT</span><span>Winter 2027, Drones 2: onboard YOLO vision on an Orange Pi companion computer and AI-guided autonomous landing</span></li>
+        </ul>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn ghost" href="George_Thant_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-label="Background">
+    <div class="wrap">
+      <div class="sec-head"><h2>Background</h2></div>
+      <div class="panels">
+        <div class="panel">
+          <div class="panel-head"><h3>Education</h3></div>
+          <div class="panel-body">
+            <div class="school"><span class="sbadge s-uci" aria-hidden="true">UCI</span><div class="entry"><a class="t" href="https://uci.edu" target="_blank" rel="noopener">University of California, Irvine<span class="ext" aria-hidden="true">↗</span></a><span>B.S. Computer Engineering</span><span class="s">Minors in Informatics and Computer Science</span><span class="s">GPA 3.66 · Expected Spring 2028</span></div></div>
+            <div class="school"><img class="sbadge s-img" src="images/occ-logo.png" width="42" height="42" alt="Orange Coast College logo"><div class="entry"><a class="t" href="https://orangecoastcollege.edu" target="_blank" rel="noopener">Orange Coast College<span class="ext" aria-hidden="true">↗</span></a><span>A.S. Computer Science</span><span class="s">C++ Specialization Certificate · May 2025</span></div></div>
+          </div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <h1 class="hero-name">George Thant</h1>
-            <p class="hero-tagline">Computer Engineering Student at UC Irvine</p>
-            <p class="hero-description">
-                Building innovative hardware and software solutions through embedded systems, circuit design, and programming.
-                Passionate about bridging the gap between hardware and software to create intelligent systems.
-            </p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">View My Projects</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="content-section fade-in">
-            <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Background & Interests</p>
-            </div>
-            <div class="about-content">
-                <p class="mb-md">
-                    I'm a Computer Engineering student at UC Irvine with a passion for embedded systems,
-                    circuit design, and hardware-software integration. My academic journey combines
-                    hands-on electronics laboratory work with strong programming fundamentals in C++,
-                    Python, and Java.
-                </p>
-                <p class="mb-md">
-                    Currently working in the UC Irvine Electronics Laboratory, I build and test analog
-                    and digital circuits using op-amp ICs for signal processing. My experience spans
-                    from Arduino-based autonomous systems to image processing algorithms, bridging
-                    theoretical knowledge with practical implementation.
-                </p>
-                <p>
-                    Beyond engineering, I've tutored over 20 students weekly in advanced mathematics
-                    including Calculus III and Linear Algebra, sharing my passion for problem-solving
-                    and analytical thinking. I'm always eager to take on new technical challenges and
-                    collaborate on innovative hardware and software projects.
-                </p>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="content-section fade-in">
-            <div class="section-header">
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">Academic Background</p>
-            </div>
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-date">Expected May 2027</div>
-                    <h3 class="timeline-company">University of California, Irvine</h3>
-                    <h4 class="timeline-role">Bachelor of Science in Computer Engineering</h4>
-                    <div class="timeline-description">
-                        <p>Pursuing comprehensive education in hardware and software systems, digital logic, embedded systems, and computer architecture.</p>
-                        <ul>
-                            <li>Hands-on electronics laboratory experience with analog and digital circuits</li>
-                            <li>Signal processing using op-amp ICs and oscilloscope measurements</li>
-                            <li>Circuit analysis and frequency response testing</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-tags">
-                        <span class="tag">Circuit Design</span>
-                        <span class="tag">Electronics Lab</span>
-                        <span class="tag">Signal Processing</span>
-                        <span class="tag">Computer Architecture</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-date">May 2025</div>
-                    <h3 class="timeline-company">Orange Coast College</h3>
-                    <h4 class="timeline-role">Associate in Science, Computer Science</h4>
-                    <div class="timeline-description">
-                        <p>Built strong foundation in computer science fundamentals, data structures, and programming.</p>
-                        <ul>
-                            <li>Certificate: C++ Specialization</li>
-                            <li>Certificate: Tutoring Skills & Strategies Training</li>
-                            <li>Strong focus on algorithms and data structures</li>
-                            <li>Advanced mathematics coursework</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">Data Structures</span>
-                        <span class="tag">Algorithms</span>
-                        <span class="tag">Mathematics</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="content-section fade-in">
-            <div class="section-header">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">Work & Research</p>
-            </div>
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-date">Sep 2025 - Present</div>
-                    <h3 class="timeline-company">University of California, Irvine</h3>
-                    <h4 class="timeline-role">Electronics Laboratory - Lab Coursework Experience</h4>
-                    <div class="timeline-description">
-                        <p>Hands-on laboratory experience building and testing analog and digital circuits for signal processing applications.</p>
-                        <ul>
-                            <li>Built analog and digital circuits on breadboard using op-amp ICs (741) for signal processing</li>
-                            <li>Tested circuits with oscilloscope and function generator, measuring gain, phase shift, and frequency response</li>
-                            <li>Verified theoretical predictions through experimental data and circuit analysis</li>
-                            <li>Documented circuit performance and analyzed discrepancies between theory and practice</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-tags">
-                        <span class="tag">Op-Amp IC 741</span>
-                        <span class="tag">Oscilloscope</span>
-                        <span class="tag">Function Generator</span>
-                        <span class="tag">Circuit Analysis</span>
-                        <span class="tag">Breadboard</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-date">Aug 2024 - Jun 2025</div>
-                    <h3 class="timeline-company">Orange Coast College</h3>
-                    <h4 class="timeline-role">Math Center - Math Tutor</h4>
-                    <div class="timeline-description">
-                        <p>Provided individualized mathematics tutoring to college students in advanced mathematics courses.</p>
-                        <ul>
-                            <li>Tutored 20+ students weekly in Calculus III and Linear Algebra, 12 hours per week</li>
-                            <li>Explained complex mathematical concepts through clear examples and problem-solving strategies</li>
-                            <li>Adapted teaching methods to accommodate different learning styles and skill levels</li>
-                            <li>Helped students develop analytical thinking and problem-solving skills</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-tags">
-                        <span class="tag">Calculus III</span>
-                        <span class="tag">Linear Algebra</span>
-                        <span class="tag">Teaching</span>
-                        <span class="tag">Mathematics</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-date">Apr 2023 - May 2024</div>
-                    <h3 class="timeline-company">Meet Fresh Restaurant</h3>
-                    <h4 class="timeline-role">Shift Lead & Associate</h4>
-                    <div class="timeline-description">
-                        <p>Led team operations and managed daily restaurant activities while ensuring quality service.</p>
-                        <ul>
-                            <li>Managed team of 5+ employees: operations, scheduling, and training</li>
-                            <li>Coordinated shift activities and delegated tasks to optimize workflow</li>
-                            <li>Trained new employees on procedures, customer service, and safety protocols</li>
-                            <li>Maintained quality standards and resolved customer concerns</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-tags">
-                        <span class="tag">Team Leadership</span>
-                        <span class="tag">Operations Management</span>
-                        <span class="tag">Training</span>
-                        <span class="tag">Customer Service</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="content-section fade-in">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Recent Work</p>
-            </div>
-            <div class="project-grid">
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">ESP32 Wi-Fi Light Switch</h3>
-                        <p class="project-description">
-                            Built a browser-controlled light switch with an ESP32-S3 and an SG90 servo. Calibrated the servo angles so the arm could flip the physical switch on and off, then return to its resting position.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">ESP32-S3</span>
-                            <span class="tag">PWM</span>
-                            <span class="tag">Wi-Fi</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">ArmAdillo Color-Sorting Arm</h3>
-                        <p class="project-description">
-                            Designing a six-axis competition arm with a gripper to sort objects by color. The design pairs a laptop camera system with an ESP32 servo controller and magnetic encoders for feedback at the base, shoulder, and elbow.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">In development</span>
-                            <span class="tag">Robotics</span>
-                            <span class="tag">I²C</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Flight Controller Telemetry</h3>
-                        <p class="project-description">
-                            Connected a Matek F405-WING flight controller to a ground station over Wi-Fi using an ESP32-C3. Verified the telemetry link by tilting the controller and watching the artificial horizon follow its motion.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">ESP32-C3</span>
-                            <span class="tag">UDP</span>
-                            <span class="tag">Flight telemetry</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Pipelined MIPS Processor</h3>
-                        <p class="project-description">
-                            Implemented Verilog pipeline logic for arithmetic instructions, branches, jumps, and stalls. Ran the processor testbench in Vivado XSim and passed its forwarding, data hazard, and control hazard cases.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">Verilog</span>
-                            <span class="tag">Vivado XSim</span>
-                            <span class="tag">Computer architecture</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">4-Bit CMOS Adder/Subtractor</h3>
-                        <p class="project-description">
-                            Built a four-bit adder/subtractor from transistor-level cells in Cadence Virtuoso. Verified the layout against the schematic, passed design rule checks, and compared six addition and subtraction cases with their expected outputs.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">Cadence Virtuoso</span>
-                            <span class="tag">CMOS layout</span>
-                            <span class="tag">DRC/LVS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">CMOS Inverter and Ring Oscillator</h3>
-                        <p class="project-description">
-                            Designed a CMOS inverter and measured its average propagation delay at 63.64 ps in simulation. The ring oscillator ran at 1.987 GHz in schematic simulation and 1.769 GHz after layout extraction.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">Spectre</span>
-                            <span class="tag">Timing analysis</span>
-                            <span class="tag">Parasitic extraction</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        Bluetooth RC Car Project
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Bluetooth RC Car - Autonomous Navigation System</h3>
-                        <p class="project-description">
-                            Programmed autonomous obstacle-detection robot for UC Irvine's OAI Summer Bridge Challenge.
-                            Wrote Arduino C++ code to interface ultrasonic sensor with motor shield for collision avoidance.
-                            Added Bluetooth connectivity for remote control, enabling switch between autonomous and manual modes.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">Arduino</span>
-                            <span class="tag">C++</span>
-                            <span class="tag">HCSR04 Sensor</span>
-                            <span class="tag">AFMotor Shield</span>
-                            <span class="tag">Bluetooth</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        Cookie Calculator Project
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Cookie Calories Calculator</h3>
-                        <p class="project-description">
-                            Built C++ program that calculates nutritional information based on cookie type and serving size.
-                            Implemented custom LinkedList to store and retrieve cookie data efficiently.
-                            Designed command-line interface with input validation and error handling for robust user experience.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">LinkedList</span>
-                            <span class="tag">Data Structures</span>
-                            <span class="tag">CLI</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        Image Processing Project
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">GreenScreen & Composite Image Modifier</h3>
-                        <p class="project-description">
-                            Built image processing tool that extracts objects by detecting color thresholds and creates composite images.
-                            Used C++ pointers to process pixel arrays, implementing green screen transparency and alpha compositing.
-                            Optimized pixel-iteration algorithms for real-time object extraction and image manipulation.
-                        </p>
-                        <div class="timeline-tags">
-                            <span class="tag">C++</span>
-                            <span class="tag">Pointers</span>
-                            <span class="tag">Image Processing</span>
-                            <span class="tag">Algorithms</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="content-section fade-in">
-            <div class="section-header">
-                <h2 class="section-title">Skills &amp; Technologies</h2>
-            </div>
-            <p class="mb-sm"><strong>Programming Languages:</strong> C, C++, Python, SQL</p>
-            <p class="mb-sm"><strong>Hardware &amp; Embedded Systems:</strong> ESP32, Arduino, sensor integration, PWM servo control, circuit prototyping</p>
-            <p><strong>Tools &amp; Technologies:</strong> Linux, Git, Cadence Virtuoso, Vivado, LTspice, KiCad</p>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="content-section fade-in">
-            <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's Connect</p>
-            </div>
-            <div class="contact-grid">
-
-                <a href="mailto:georgethant03@gmail.com" class="contact-card">
-                    <div class="contact-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">georgethant03@gmail.com</div>
-                </a>
-
-                <a href="tel:+14243010258" class="contact-card">
-                    <div class="contact-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-label">Phone</div>
-                    <div class="contact-value">(424) 301-0258</div>
-                </a>
-
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-label">Location</div>
-                    <div class="contact-value">Irvine, CA 92617</div>
-                </div>
-
-                <a href="https://github.com/MrYangGeorge" class="contact-card" target="_blank" rel="noopener noreferrer">
-                    <div class="contact-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-label">GitHub</div>
-                    <div class="contact-value">github.com/MrYangGeorge</div>
-                </a>
-
-                <a href="https://www.linkedin.com/in/georgethant" class="contact-card" target="_blank" rel="noopener noreferrer">
-                    <div class="contact-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-label">LinkedIn</div>
-                    <div class="contact-value">linkedin.com/in/georgethant</div>
-                </a>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#hero" class="footer-link">Home</a>
-                <a href="#about" class="footer-link">About</a>
-                <a href="#education" class="footer-link">Education</a>
-                <a href="#experience" class="footer-link">Experience</a>
-                <a href="#projects" class="footer-link">Projects</a>
-                <a href="#skills" class="footer-link">Skills</a>
-                <a href="#contact" class="footer-link">Contact</a>
-            </div>
-            <p class="footer-copyright">
-                © 2025 Aung Zin Thant (George). All rights reserved.
-            </p>
+        <div class="panel">
+          <div class="panel-head"><h3>Experience</h3></div>
+          <div class="panel-body">
+            <div class="entry"><span class="t">Electrical Team Lead, Zims Robotics Club</span><span class="s">Fall 2026 – Present</span><span class="s">Lead sensor integration and electrical planning for a six-degree-of-freedom competition robot arm.</span></div>
+            <div class="entry"><span class="t">Math Tutor, Orange Coast College</span><span class="s">Aug 2024 – Jun 2025</span><span class="s">Tutored 30+ students weekly in Calculus and Linear Algebra.</span></div>
+          </div>
         </div>
-    </footer>
+        <div class="panel">
+          <div class="panel-head"><h3>Skills</h3></div>
+          <div class="panel-body">
+            <div class="skill-group"><span class="lbl">Embedded &amp; hardware</span><div class="chips"><span>ESP32</span><span>Arduino</span><span>I²C</span><span>UART</span><span>PWM</span><span>Sensors</span><span>Servos</span><span>Circuit design</span><span>Oscilloscope</span><span>Function generator</span></div></div>
+            <div class="skill-group"><span class="lbl">Languages</span><div class="chips"><span>C</span><span>C++</span><span>Python</span><span>JavaScript</span><span>Verilog</span><span>SQL</span></div></div>
+            <div class="skill-group"><span class="lbl">Tools</span><div class="chips"><span>Mission Planner</span><span>KiCad (learning)</span><span>LTspice</span><span>Vivado</span><span>Cadence Virtuoso</span><span>Linux</span><span>Git</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-// George Yang Portfolio - Interactive JavaScript
+  <section class="block" id="projects" style="padding-top:8px">
+    <div class="wrap">
+      <div class="sec-head"><h2>Projects</h2><p class="hint">Click a project for photos, details and code.</p></div>
+      <div class="pgroup">
+        <div class="pgroup-head"><h3>Hardware builds</h3><p>Hardware I've wired, programmed and tested, from personal, club, hackathon and class builds.</p></div>
+        <div class="plist" id="grid-builds"></div>
+        <div class="see-more" id="more-builds"></div>
+      </div>
+      <div class="pgroup">
+        <div class="pgroup-head"><h3>Coursework</h3><p>Chip design, processor and software assignments from UC Irvine and Orange Coast College.</p></div>
+        <div class="plist" id="grid-course"></div>
+        <div class="see-more" id="more-course"></div>
+      </div>
+    </div>
+  </section>
 
-document.addEventListener('DOMContentLoaded', function() {
-    const header = document.getElementById('header');
-    const navItems = document.querySelectorAll('.nav-item');
-    const navIndicator = document.getElementById('navIndicator');
-    const sections = document.querySelectorAll('section[id]');
+  <section class="block contact" id="contact" style="padding-block:36px">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:16px"><h2>Contact</h2></div>
+      <ul class="contact-list">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><span class="lbl">Email:</span> <a href="mailto:georgethant03@gmail.com">georgethant03@gmail.com</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg><span class="lbl">LinkedIn:</span> <a href="https://www.linkedin.com/in/georgethant" target="_blank" rel="noopener">linkedin.com/in/georgethant</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.530 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg><span class="lbl">GitHub:</span> <a href="https://github.com/MrYangGeorge" target="_blank" rel="noopener">github.com/MrYangGeorge</a></li>
+        
+      </ul>
+    </div>
+  </section>
+</main>
 
-    let lastScroll = 0;
+<main id="detail-view" hidden>
+  <div class="wrap detail" id="detail"></div>
+</main>
 
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
+<footer class="site"><div class="wrap silk"><span>© 2026 George Thant</span></div></footer>
 
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        updateActiveNavigation();
-        lastScroll = currentScroll;
-    });
-
-    function updateActiveNavigation() {
-        let currentSection = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-
-            if (window.pageYOffset >= (sectionTop - 200)) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-
-            if (item.getAttribute('data-section') === currentSection) {
-                item.classList.add('active');
-                updateIndicator(item);
-            }
-        });
-    }
-
-    function updateIndicator(activeItem) {
-        if (!activeItem) {
-            const firstItem = document.querySelector('.nav-item.active');
-            activeItem = firstItem || navItems[0];
-        }
-
-        const itemRect = activeItem.getBoundingClientRect();
-        const navRect = activeItem.parentElement.getBoundingClientRect();
-
-        navIndicator.style.width = itemRect.width + 'px';
-        navIndicator.style.left = (itemRect.left - navRect.left) + 'px';
-    }
-
-    setTimeout(() => {
-        const activeItem = document.querySelector('.nav-item.active');
-        if (activeItem) {
-            updateIndicator(activeItem);
-        }
-    }, 100);
-
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            const activeItem = document.querySelector('.nav-item.active');
-            if (activeItem) {
-                updateIndicator(activeItem);
-            }
-        }, 250);
-    });
-
-    navItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const headerHeight = header.offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                navItems.forEach(navItem => navItem.classList.remove('active'));
-                this.classList.add('active');
-                updateIndicator(this);
-            }
-        });
-    });
-
-    const fadeElements = document.querySelectorAll('.fade-in');
-
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    fadeElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        fadeObserver.observe(element);
-    });
-
-    const projectCards = document.querySelectorAll('.project-card');
-
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-
-    const footerLinks = document.querySelectorAll('.footer-link');
-
-    footerLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                if (targetSection) {
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    const externalLinks = document.querySelectorAll('a[target="_blank"]');
-
-    externalLinks.forEach(link => {
-        if (!link.hasAttribute('rel')) {
-            link.setAttribute('rel', 'noopener noreferrer');
-        }
-    });
-
-    console.log('%c👋 Hello, Developer!', 'font-size: 20px; font-weight: bold; color: #3350b4;');
-    console.log('%cThanks for checking out my portfolio.', 'font-size: 14px; color: #495057;');
-    console.log('%cBuilt with vanilla JavaScript, HTML, and CSS.', 'font-size: 12px; color: #868e96;');
-    console.log('%c✓ Portfolio initialized successfully', 'color: #51cf66; font-weight: bold;');
-});
-    </script>
+<script src="script.js?v=3" defer></script>
 </body>
 </html>
