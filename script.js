@@ -51,7 +51,7 @@ const projects = [
       "Added a TCA9548A I²C multiplexer so three AS5600 magnetic encoders, which all share one fixed address, can report joint angles on the same bus.",
       "Split the power: a fused 6 V, 20 A supply for the servos and a separate 5 V, 2 A supply for the ESP32. Mechanical CAD is still in progress."],
     skills: ["Leading an electrical team", "I²C bus design with a multiplexer", "Servo power budgeting and fusing", "Choosing sensors for joint feedback"] },
-  { id: "switch", hasVideo: true, repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
+  { id: "switch", hasVideo: true, repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: IMG + "light-switch-mounted-thumb.jpg", pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
     stack: "ESP32 · PWM · servo · USB-C 5 V",
     short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
     bullets: ["Built a web page served by the ESP32 that turns a wall light switch on and off over Wi-Fi.",
