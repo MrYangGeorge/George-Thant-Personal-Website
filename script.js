@@ -66,7 +66,7 @@ const projects = [
       "Worked with teammates to diagnose wiring and mechanical faults during assembly."],
     credits: [["Original design and code: Regis Hsu, SpiderRobot", "https://github.com/regishsu/SpiderRobot"], ["Build guide: ROBOT Lk", ""]],
     skills: ["3D printing and mechanical assembly", "Wiring and calibrating 12 servos", "Reading and adapting someone else's firmware", "Finding a pin conflict between a sensor and serial output"] },
-  { id: "rccar", img: RCCAR.thumb, full: RCCAR.src, pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
+  { id: "rccar", img: RCCAR.thumb, full: RCCAR.src, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
     stack: "Arduino Uno · C++ · Adafruit Motor Shield · HC-SR04 · Bluetooth",
     short: "A four-wheel mecanum car driven from a phone over Bluetooth that stops by itself when something is within 30 cm. Built for UCI's Summer Bridge Tech Challenge.",
     bullets: ["Wrote the Arduino C++ firmware: Bluetooth serial commands for forward, back, turns, spins and speed up/down across four DC motors.",
