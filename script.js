@@ -9,6 +9,7 @@ const IRR = [
   { src: IMG + "irrigation-motor-driver.png", cap: "Water-level sensor and L298N pump driver" }
 ];
 const SWITCH = [
+  { video: IMG + "light-switch-demo.mp4", poster: IMG + "light-switch-demo-poster.jpg", cap: "Tapping Turn On / Turn Off on a tablet flips the room light" },
   { src: IMG + "light-switch-mounted.jpg", thumb: IMG + "light-switch-mounted-thumb.jpg", cap: "Mounted over the wall switch" },
   { src: IMG + "light-switch-breadboard.jpg", cap: "ESP32 and USB-C 5 V power on the breadboard" },
   { src: IMG + "light-switch-phone.jpg", cap: "Control page on a phone at lightswitch.local" },
@@ -50,7 +51,7 @@ const projects = [
       "Added a TCA9548A I²C multiplexer so three AS5600 magnetic encoders, which all share one fixed address, can report joint angles on the same bus.",
       "Split the power: a fused 6 V, 20 A supply for the servos and a separate 5 V, 2 A supply for the ESP32. Mechanical CAD is still in progress."],
     skills: ["Leading an electrical team", "I²C bus design with a multiplexer", "Servo power budgeting and fusing", "Choosing sensors for joint feedback"] },
-  { id: "switch", repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
+  { id: "switch", hasVideo: true, repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
     stack: "ESP32 · PWM · servo · USB-C 5 V",
     short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
     bullets: ["Built a web page served by the ESP32 that turns a wall light switch on and off over Wi-Fi.",
@@ -137,7 +138,7 @@ function thumb(p, label) {
 }
 function galleryHTML(p) {
   const shot = g => `<figure class="shot"><div class="footprint has-img fit${p.dark || g.video ? " dark" : ""}">${g.video ? `<video src="${g.video}" poster="${g.poster}" muted autoplay loop playsinline controls aria-label="${esc(g.cap)}"></video>` : `<img src="${g.src}" alt="${esc(g.cap)}" loading="lazy">`}</div><figcaption>${esc(g.cap)}</figcaption></figure>`;
-  if (p.layout === "switch") return `<div class="gallery trio">${p.gallery.slice(0, 3).map(shot).join("")}</div><div class="gallery stack" style="margin-top:-12px">${shot(p.gallery[3])}</div>`;
+  if (p.layout === "switch") return `<div class="gallery trio">${p.gallery.slice(0, 3).map(shot).join("")}</div><div class="gallery split" style="margin-top:-12px">${p.gallery.slice(3).map(shot).join("")}</div>`;
   if (p.layout === "trio-media") return `<div class="gallery trio">${p.gallery.map(shot).join("")}</div>`;
   if (p.layout === "pair-tall") return `<div class="gallery pair tall">${p.gallery.map(shot).join("")}</div>`;
   if (p.layout === "pair") return `<div class="gallery pair">${p.gallery.map(shot).join("")}</div>`;

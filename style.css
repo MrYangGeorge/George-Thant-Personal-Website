@@ -237,3 +237,6 @@ ul.credits { color: var(--muted); font-size: 14.5px; }
 .gallery.pair.tall figure.shot .footprint { aspect-ratio: 3 / 4; }
 .footprint video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 1; background: #1d1d1d; }
 .vid-tag { position: absolute; left: 8px; bottom: 8px; z-index: 2; font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; color: #1d1800; background: var(--copper); padding: 2px 6px; border-radius: 3px; }
+.gallery.split { grid-template-columns: 1fr 2.6fr; align-items: start; }
+.gallery.split figure.shot .footprint { aspect-ratio: auto; height: 380px; }
+@media (max-width: 640px) { .gallery.split { grid-template-columns: 1fr; } .gallery.split figure.shot .footprint { height: auto; aspect-ratio: 4 / 3; } }
