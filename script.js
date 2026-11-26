@@ -19,6 +19,7 @@ const ARM = [{ src: IMG + "armadillo-wiring.jpg", thumb: IMG + "armadillo-wiring
 const SPIDER = { src: IMG + "spider-robot.jpg", thumb: IMG + "spider-robot-thumb.jpg" };
 const RCCAR = { src: IMG + "rc-car.jpg", thumb: IMG + "rc-car-thumb.jpg" };
 const RCCAR_MEDIA = [
+  { video: IMG + "rc-car-course.mp4", poster: IMG + "rc-car-course-poster.jpg", cap: "Driving the chalk race course" },
   { video: IMG + "rc-car-demo.mp4", poster: IMG + "rc-car-demo-poster.jpg", cap: "Driving it from a phone over Bluetooth" },
   { src: IMG + "rc-car.jpg", cap: "The finished car" }
 ];
@@ -74,7 +75,7 @@ const projects = [
       "Worked with teammates to diagnose wiring and mechanical faults during assembly."],
     credits: [["Original design and code: Regis Hsu, SpiderRobot", "https://github.com/regishsu/SpiderRobot"], ["Build guide: ROBOT Lk", ""]],
     skills: ["3D printing and mechanical assembly", "Wiring and calibrating 12 servos", "Reading and adapting someone else's firmware", "Finding a pin conflict between a sensor and serial output"] },
-  { id: "rccar", img: RCCAR.thumb, gallery: RCCAR_MEDIA, layout: "pair-tall", hasVideo: true, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
+  { id: "rccar", img: RCCAR.thumb, gallery: RCCAR_MEDIA, layout: "trio-media", hasVideo: true, repo: "https://github.com/MrYangGeorge/bluetooth-rc-car", pos: "center 62%", cat: "embedded", title: "Bluetooth RC Car with Obstacle Stop", badges: [["Team","Team · Award"],["Team","UCI Summer Bridge"]], date: "Aug 2025",
     stack: "Arduino Uno · C++ · Adafruit Motor Shield · HC-SR04 · Bluetooth",
     short: "A four-wheel mecanum car driven from a phone over Bluetooth that stops by itself when something is within 30 cm. Built for UCI's Summer Bridge Tech Challenge.",
     bullets: ["Wrote the Arduino C++ firmware: Bluetooth serial commands for forward, back, turns, spins and speed up/down across four DC motors.",
@@ -137,6 +138,7 @@ function thumb(p, label) {
 function galleryHTML(p) {
   const shot = g => `<figure class="shot"><div class="footprint has-img fit${p.dark || g.video ? " dark" : ""}">${g.video ? `<video src="${g.video}" poster="${g.poster}" muted autoplay loop playsinline controls aria-label="${esc(g.cap)}"></video>` : `<img src="${g.src}" alt="${esc(g.cap)}" loading="lazy">`}</div><figcaption>${esc(g.cap)}</figcaption></figure>`;
   if (p.layout === "switch") return `<div class="gallery trio">${p.gallery.slice(0, 3).map(shot).join("")}</div><div class="gallery stack" style="margin-top:-12px">${shot(p.gallery[3])}</div>`;
+  if (p.layout === "trio-media") return `<div class="gallery trio">${p.gallery.map(shot).join("")}</div>`;
   if (p.layout === "pair-tall") return `<div class="gallery pair tall">${p.gallery.map(shot).join("")}</div>`;
   if (p.layout === "pair") return `<div class="gallery pair">${p.gallery.map(shot).join("")}</div>`;
   return `<div class="gallery stack">${shot(p.gallery[0])}<div class="side">${p.gallery.slice(1).map(shot).join("")}</div></div>`;
