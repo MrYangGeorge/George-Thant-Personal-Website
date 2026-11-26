@@ -20,14 +20,15 @@ const SPIDER = { src: IMG + "spider-robot.jpg", thumb: IMG + "spider-robot-thumb
 const RCCAR = { src: IMG + "rc-car.jpg", thumb: IMG + "rc-car-thumb.jpg" };
 const BADGE = { Personal: "b-personal", Team: "b-team", Hackathon: "b-hack", Course: "b-course" };
 const projects = [
-  { id: "drone", gallery: DRONE, img: DRONE[0].thumb, dark: true, layout: "pair", cat: "embedded", title: "Quadcopter Build: Avionics and Telemetry", badges: [["Course","Course · Drones"],["Team","Team · In progress"]], date: "Fall 2026 – Present",
-    stack: "ArduPilot · Matek F405-WING · ESP32-C3 · ExpressLRS · GPS",
-    short: "Building a drone from parts. Linked the flight controller to a ground station over Wi-Fi and checked the telemetry against the real board.",
-    bullets: ["Building a quadcopter from parts: flight controller, ExpressLRS radio link, brushless motors and ESCs, GPS, video and Wi-Fi telemetry, running ArduPilot.",
-      "Connected the flight controller to a ground station over Wi-Fi through an ESP32-C3.",
-      "Verified attitude telemetry by tilting the board and checking the on-screen artificial horizon.",
-      "Working toward a fully autonomous waypoint mission: takeoff, waypoint and auto-land."],
-    skills: ["Flight controller setup in Mission Planner", "ESP32 Wi-Fi telemetry bridge", "Checking live sensor data against real motion", "Debugging wiring on a flight-ready build"] },
+  { id: "drone", gallery: DRONE, img: DRONE[0].thumb, dark: true, layout: "pair", cat: "embedded", title: "Quadcopter Build and Autonomous Flight", badges: [["Course","Course · Drones"],["Team","Team"]], date: "Fall 2026",
+    stack: "ArduPilot · Mission Planner · Matek F405-WING · ESP32-C3 · ExpressLRS · GPS",
+    short: "Built a quadcopter from parts and flew a fully autonomous waypoint mission: automatic takeoff, waypoint and auto-land, planned in Mission Planner.",
+    bullets: ["Built a quadcopter from parts with my team: flight controller, ExpressLRS radio link, brushless motors and ESCs, GPS and Wi-Fi telemetry, running ArduPilot.",
+      "Flew a fully autonomous waypoint mission planned in Mission Planner: automatic takeoff, a waypoint, then auto-land.",
+      "Connected the flight controller to the ground station over Wi-Fi through an ESP32-C3, and verified attitude telemetry by tilting the board and watching the on-screen horizon.",
+      "Next, in Drones 2 (Winter 2027): onboard YOLO object detection on an Orange Pi companion computer, vision-triggered landing, and an AI pilot that flies through tool calls."],
+    credits: [["Course: EECS 195 Drones, taught by Prof. Peter Burke, UC Irvine. Parts and build design provided by the course.", ""], ["Follow-on: Drones 2: AI, Vision & Autonomy (EECS 199 independent study) with Prof. Peter Burke, Winter 2027", ""], ["Flight software: ArduPilot (open source)", "https://ardupilot.org/"]],
+    skills: ["Drone assembly and wiring", "ArduPilot and Mission Planner setup", "Autonomous waypoint missions", "ESP32 Wi-Fi telemetry bridge", "Checking live sensor data against real motion"] },
   { id: "irrigation", cat: "embedded", title: "Smart Irrigation System", badges: [["Hackathon","StarkHacks · Purdue"],["Team","Team"]], date: "Apr 2026",
     stack: "ESP32 · Python · FastAPI · WebSockets", repo: "https://github.com/MrYangGeorge/Groot", devpost: "https://devpost.com/software/leaf-it-to-us-yvn8ls", gallery: IRR, img: IRR[0].thumb, fit: "contain",
     short: "ESP32 reads soil-moisture, temperature/humidity, water-level and light sensors and decides when to run a water pump.",
