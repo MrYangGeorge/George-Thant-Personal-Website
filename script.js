@@ -41,7 +41,7 @@ const projects = [
       "Evaluating AS5600 magnetic encoders for joint-angle feedback at three joints.",
       "Planning I²C connections and PCA9685 servo control for the winter build."],
     skills: ["Leading an electrical team", "Planning an I²C bus (PCA9685, AS5600)", "Choosing sensors for joint feedback"] },
-  { id: "switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
+  { id: "switch", repo: "https://github.com/MrYangGeorge/wifi-light-switch", gallery: SWITCH, img: SWITCH[0].thumb, pos: "center 55%", layout: "switch", cat: "embedded", title: "Wi-Fi Light Switch", badges: [["Personal","Personal"]], date: "Nov 2026",
     stack: "ESP32 · PWM · servo · USB-C 5 V",
     short: "A browser page flips a real wall light switch through a servo driven by an ESP32.",
     bullets: ["Built a web page served by the ESP32 that turns a wall light switch on and off over Wi-Fi.",
